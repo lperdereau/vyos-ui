@@ -23,8 +23,6 @@ const { data } = await useAsyncData("result", async () => {
     return await client.request(dashboard, { key: "foo" });
 });
 
-console.log(JSON.stringify(data.value));
-
 consumption.value = computeConsumption(data.value);
 </script>
 

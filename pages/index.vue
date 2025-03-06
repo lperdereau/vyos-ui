@@ -1,5 +1,5 @@
 <template>
-    <div class="page-content" @click="handle">
+    <div class="page-content">
         <h1>Dashboard</h1>
         <DashboardConsumption class="consumption" :consumption="consumption" />
     </div>

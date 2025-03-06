@@ -2,6 +2,13 @@ import gql from "graphql-tag";
 
 export const dashboard = gql`
   query Dashboard($key: String!) {
+    SystemStatus(data: { key: $key }) {
+      data {
+        result
+      }
+      errors
+      success
+    }
     ShowCpu(data: { key: $key }) {
       success
       errors

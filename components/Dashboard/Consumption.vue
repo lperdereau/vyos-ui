@@ -36,7 +36,7 @@
             </span>
             <div class="load">
                 <DashboardMetric
-                    :value="ramFree.quantity"
+                    :value="ramFree.quantity.toFixed(2)"
                     :unit="ramFree.unit"
                     description="Free"
                 />
@@ -52,7 +52,7 @@
             </span>
             <div class="load">
                 <DashboardMetric
-                    :value="storageFree.quantity"
+                    :value="storageFree.quantity.toFixed(2)"
                     :unit="storageFree.unit"
                     description="Free"
                 />
@@ -65,35 +65,13 @@
 <script setup lang="ts">
 import convert from "convert";
 import { computed } from "vue";
-
-interface CPU {
-    load: Number;
-    loadAvg1Minute: Number;
-    loadAvg5Minutes: Number;
-    loadAvg15Minutes: Number;
-    type: String;
-}
-
-interface Metric {
-    size: Number;
-    unit: String;
-}
-
-interface RAM {
-    total: Metric;
-    used: Metric;
-}
-
-interface Storage {
-    total: Metric;
-    used: Metric;
-}
-
-interface Consumption {
-    cpu: CPU;
-    ram: RAM;
-    storage: Storage;
-}
+import {
+    type Consumption,
+    getRamConsumption,
+    getRamFree,
+    getStorageConsumption,
+    getStorageFree,
+} from "#shared/types/consumption";
 
 interface Props {
     consumption: Consumption;
@@ -132,53 +110,19 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const ramConsumption = computed(() => {
-    const total = convert(
-        props.consumption.ram.total.size,
-        props.consumption.ram.total.unit,
-    ).to("B");
-    const used = convert(
-        props.consumption.ram.used.size,
-        props.consumption.ram.used.unit,
-    ).to("B");
-    return (used / total) * 100;
+    return getRamConsumption(props.consumption.ram);
 });
 
 const ramFree = computed(() => {
-    const total = convert(
-        props.consumption.ram.total.size,
-        props.consumption.ram.total.unit,
-    ).to("B");
-    const used = convert(
-        props.consumption.ram.used.size,
-        props.consumption.ram.used.unit,
-    ).to("B");
-    const result = convert(total - used, "B").to("best");
-    return result;
+    return getRamFree(props.consumption.ram);
 });
 
 const storageConsumption = computed(() => {
-    const total = convert(
-        props.consumption.storage.total.size,
-        props.consumption.storage.total.unit,
-    ).to("B");
-    const used = convert(
-        props.consumption.storage.used.size,
-        props.consumption.storage.used.unit,
-    ).to("B");
-    return (used / total) * 100;
+    return getStorageConsumption(props.consumption.storage);
 });
 
 const storageFree = computed(() => {
-    const total = convert(
-        props.consumption.storage.total.size,
-        props.consumption.storage.total.unit,
-    ).to("B");
-    const used = convert(
-        props.consumption.storage.used.size,
-        props.consumption.storage.used.unit,
-    ).to("B");
-    const result = convert(total - used, "B").to("best");
-    return result;
+    return getStorageFree(props.consumption.storage);
 });
 </script>
 

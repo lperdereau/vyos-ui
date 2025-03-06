@@ -12,37 +12,10 @@ import { dashboard } from "#shared/graphql/dashboard";
 import {
     type Consumption,
     computeConsumption,
+    defaultConsumption,
 } from "#shared/types/consumption";
 
-const consumption = ref<Consumption>({
-    cpu: {
-        load: 0,
-        loadAvg1Minute: 0,
-        loadAvg5Minutes: 0,
-        loadAvg15Minutes: 0,
-        type: "N/A",
-    },
-    ram: {
-        total: {
-            size: 0,
-            unit: "B",
-        },
-        used: {
-            size: 0,
-            unit: "B",
-        },
-    },
-    storage: {
-        total: {
-            size: 0,
-            unit: "B",
-        },
-        used: {
-            size: 0,
-            unit: "B",
-        },
-    },
-});
+const consumption = ref<Consumption>(defaultConsumption());
 
 const { client } = useGraphQL();
 
@@ -51,8 +24,6 @@ const { data } = await useAsyncData("result", async () => {
 });
 
 console.log(JSON.stringify(data.value));
-
-// {"SystemStatus":{"data":{"result":{"host_name":"vyos-lperdereau-1","version":{"version":"1.5-rolling-202501200007","flavor":"generic","built_by":"autobuild@vyos.net","built_on":"Mon 20 Jan 2025 00:07 UTC","build_uuid":"3cb57d42-3f6e-46c4-be91-cf91c1943226","build_git":"e850eb8854d52b","build_branch":"current","release_train":"current","architecture":"amd64","build_type":"release","build_comment":"","bugtracker_url":"https://vyos.dev","documentation_url":"https://docs.vyos.io/en/latest","project_news_url":"https://blog.vyos.io","support_url":"https://support.vyos.io","system_arch":"x86_64","system_type":"KVM guest","boot_via":"installed image","hardware_vendor":"QEMU","hardware_model":"Standard PC (Q35 + ICH9, 2009)","hardware_serial":"","hardware_uuid":"8bac6418-251c-4e68-8a48-815630e0de86","secure_boot":"n/a (BIOS)"},"uptime":{"uptime":"1d 2h 18m 19s","load_average":{"1":0,"5":0,"15":0}},"ram":{"total":2081341440,"free":1552891904,"used":528449536,"buffers":13508608,"cached":444317696}}},"errors":null,"success":true},"ShowCpu":{"success":true,"errors":null,"data":{"result":[{"vendor_id":"GenuineIntel","cpufamily":"15","model":"107","modelname":"QEMU Virtual CPU version 2.5+","stepping":"1","microcode":"0x1","cpu_m_hz":"2399.998","cachesize":"16384 KB","physicalid":"0","siblings":"2","coreid":"0","cpucores":"2","apicid":"0","initialapicid":"0","fpu":"yes","fpu_exception":"yes","cpuidlevel":"13","wp":"yes","flags":"fpu de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx lm constant_tsc nopl xtopology cpuid tsc_known_freq pni ssse3 cx16 sse4_1 sse4_2 x2apic popcnt aes hypervisor lahf_lm cpuid_fault pti","bugs":"cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs itlb_multihit mmio_unknown bhi","bogomips":"4799.99","clflushsize":"64","cache_alignment":"128","addresssizes":"40 bits physical, 48 bits virtual","powermanagement":""}]},"op_mode_error":null},"ShowMemory":{"success":true,"errors":null,"data":{"result":{"total":2081341440,"free":1552891904,"used":528449536,"buffers":13508608,"cached":444317696}},"op_mode_error":null},"ShowStorage":{"success":true,"errors":null,"data":{"result":{"filesystem":"/dev/sda3","size":10200547328,"used":625999872,"avail":9126805504,"use_percentage":"7"}},"op_mode_error":null}}
 
 consumption.value = computeConsumption(data.value);
 </script>

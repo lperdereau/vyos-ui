@@ -33,13 +33,18 @@ export function computeConsumption(data: any): Consumption {
   return {
     cpu: {
       type: data.ShowCpu.data.result[0].modelname,
-      load: data.SystemStatus.data.result.uptime.load_average["1"].toFixed(1),
-      loadAvg1Minute:
-        data.SystemStatus.data.result.uptime.load_average["1"].toFixed(1),
-      loadAvg5Minutes:
-        data.SystemStatus.data.result.uptime.load_average["5"].toFixed(1),
-      loadAvg15Minutes:
-        data.SystemStatus.data.result.uptime.load_average["15"].toFixed(1),
+      load: (
+        data.SystemStatus.data.result.uptime.load_average["1"] * 100
+      ).toFixed(1) as Number,
+      loadAvg1Minute: (
+        data.SystemStatus.data.result.uptime.load_average["1"] * 100
+      ).toFixed(1) as Number,
+      loadAvg5Minutes: (
+        data.SystemStatus.data.result.uptime.load_average["5"] * 100
+      ).toFixed(1) as Number,
+      loadAvg15Minutes: (
+        data.SystemStatus.data.result.uptime.load_average["15"] * 100
+      ).toFixed(1) as Number,
     },
     ram: {
       total: metricToBest({
@@ -102,5 +107,37 @@ export function metricToBest(metric: Metric): Metric {
   return {
     size: res.quantity.toFixed(2),
     unit: res.unit,
+  };
+}
+
+export function defaultConsumption(): any {
+  return {
+    cpu: {
+      load: 0,
+      loadAvg1Minute: 0,
+      loadAvg5Minutes: 0,
+      loadAvg15Minutes: 0,
+      type: "",
+    },
+    ram: {
+      total: {
+        size: 0,
+        unit: "B",
+      },
+      used: {
+        size: 0,
+        unit: "B",
+      },
+    },
+    storage: {
+      total: {
+        size: 0,
+        unit: "B",
+      },
+      used: {
+        size: 0,
+        unit: "B",
+      },
+    },
   };
 }

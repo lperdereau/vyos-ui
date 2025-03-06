@@ -41,7 +41,10 @@
                     description="Free"
                 />
             </div>
-            <ProgressBar :progress="ramConsumption" class="progress" />
+            <ProgressBar
+                :progress="ramConsumption as Number"
+                class="progress"
+            />
         </div>
         <ColumnSeparator color="#eaebed" />
         <div class="metrics storage">
@@ -71,6 +74,7 @@ import {
     getRamFree,
     getStorageConsumption,
     getStorageFree,
+    defaultConsumption,
 } from "#shared/types/consumption";
 
 interface Props {
@@ -78,38 +82,10 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-    consumption: {
-        cpu: {
-            load: 0,
-            loadAvg1Minute: 0,
-            loadAvg5Minutes: 0,
-            loadAvg15Minutes: 0,
-            type: "",
-        },
-        ram: {
-            total: {
-                size: 0,
-                unit: "B",
-            },
-            used: {
-                size: 0,
-                unit: "B",
-            },
-        },
-        storage: {
-            total: {
-                size: 0,
-                unit: "B",
-            },
-            used: {
-                size: 0,
-                unit: "B",
-            },
-        },
-    },
+    consumption: defaultConsumption(),
 });
 
-const ramConsumption = computed(() => {
+const ramConsumption = computed<Number>(() => {
     return getRamConsumption(props.consumption.ram);
 });
 
@@ -117,7 +93,7 @@ const ramFree = computed(() => {
     return getRamFree(props.consumption.ram);
 });
 
-const storageConsumption = computed(() => {
+const storageConsumption = computed<Number>(() => {
     return getStorageConsumption(props.consumption.storage);
 });
 

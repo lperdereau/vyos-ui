@@ -41,20 +41,20 @@ const consumption = ref({
     },
 });
 
-const { client } = useGraphQL();
+// const { client } = useGraphQL();
 
-const { data } = await useAsyncData("result", async () => {
-    return await client.request(dashboard, { key: "foo" });
-});
+// const { data } = await useAsyncData("result", async () => {
+//     return await client.request(dashboard, { key: "foo" });
+// });
 
-// Fetch on the client using useQuery for hydration
-const { data: result } = useQuery({
-    queryKey: ["result"],
-    initialData: data.value, // Use SSR-fetched data as initial state
-});
+// // Fetch on the client using useQuery for hydration
+// const { data: result } = useQuery({
+//     queryKey: ["result"],
+//     initialData: data.value, // Use SSR-fetched data as initial state
+// });
 
-console.log(data.value);
-console.log(result);
+// console.log(data.value);
+// console.log(result);
 </script>
 
 <style scoped>

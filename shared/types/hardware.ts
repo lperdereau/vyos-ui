@@ -23,13 +23,13 @@ export interface Storage {
   used: Metric;
 }
 
-export interface Consumption {
+export interface Hardware {
   cpu: CPU;
   ram: RAM;
   storage: Storage;
 }
 
-export function computeConsumption(data: any): Consumption {
+export function computeHardware(data: any): Hardware {
   return {
     cpu: {
       type: data.ShowCpu.data.result[0].modelname,
@@ -110,7 +110,7 @@ export function metricToBest(metric: Metric): Metric {
   };
 }
 
-export function defaultConsumption(): any {
+export function defaultHardware(): any {
   return {
     cpu: {
       load: 0,

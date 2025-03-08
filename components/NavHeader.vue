@@ -8,11 +8,17 @@
     </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
-
-const name = ref("vyr-customer-1.enix.io");
-const version = ref("1.4.0");
+<script setup lang="ts">
+const props = defineProps({
+    name: {
+        type: String,
+        default: "vyr-name",
+    },
+    version: {
+        type: String,
+        default: "N/A",
+    },
+});
 </script>
 
 <style scoped>

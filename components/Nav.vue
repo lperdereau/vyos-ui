@@ -1,6 +1,6 @@
 <template>
     <div class="nav-content">
-        <NavHeader />
+        <NavHeader :name="name" :version="version" />
         <div class="nav-items">
             <NavItem
                 title="Dashboard"
@@ -19,6 +19,17 @@
         </div>
     </div>
 </template>
+
+<script setup lang="ts">
+const props = defineProps({
+    name: {
+        type: String,
+    },
+    version: {
+        type: String,
+    },
+});
+</script>
 
 <style scoped>
 .nav-content {

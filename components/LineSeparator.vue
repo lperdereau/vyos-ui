@@ -8,12 +8,14 @@ interface Props {
     color?: string;
     thickness?: number;
     width?: string;
+    margin?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
     color: "#000000",
     thickness: 1,
     width: "100%",
+    margin: "10px 0",
 });
 
 const lineStyle = computed(() => {
@@ -21,12 +23,7 @@ const lineStyle = computed(() => {
         backgroundColor: props.color,
         height: `${props.thickness}px`,
         width: props.width,
+        margin: props.margin,
     };
 });
 </script>
-
-<style scoped>
-.line-separator {
-    margin: 10px 0; /* Optional: Adds some vertical margin */
-}
-</style>

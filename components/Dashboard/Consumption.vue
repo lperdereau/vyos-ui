@@ -66,23 +66,22 @@
 </template>
 
 <script setup lang="ts">
-import convert from "convert";
 import { computed } from "vue";
 import {
-    type Consumption,
+    type Hardware,
     getRamConsumption,
     getRamFree,
     getStorageConsumption,
     getStorageFree,
-    defaultConsumption,
-} from "#shared/types/consumption";
+    defaultHardware,
+} from "#shared/types/hardware";
 
 interface Props {
-    consumption: Consumption;
+    consumption: Hardware;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-    consumption: defaultConsumption(),
+    consumption: defaultHardware(),
 });
 
 const ramConsumption = computed<Number>(() => {

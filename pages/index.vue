@@ -2,6 +2,8 @@
     <div class="page-content">
         <h1>Dashboard</h1>
         <DashboardConsumption class="consumption" :consumption="consumption" />
+        <LineSeparator color="#eaebed" />
+        <DashboardRouting class="routing" />
     </div>
 </template>
 
@@ -10,12 +12,12 @@ import { ref } from "vue";
 import { useGraphQL } from "~/composables/useGraphQL";
 import { dashboard } from "#shared/graphql/dashboard";
 import {
-    type Consumption,
-    computeConsumption,
-    defaultConsumption,
-} from "#shared/types/consumption";
+    type Hardware,
+    computeHardware,
+    defaultHardware,
+} from "#shared/types/hardware";
 
-const consumption = ref<Consumption>(defaultConsumption());
+const consumption = ref<Hardware>(defaultHardware());
 
 const { client } = useGraphQL();
 
@@ -23,7 +25,7 @@ const { data } = await useAsyncData("result", async () => {
     return await client.request(dashboard, { key: "foo" });
 });
 
-consumption.value = computeConsumption(data.value);
+consumption.value = computeHardware(data.value);
 </script>
 
 <style scoped>
@@ -41,6 +43,11 @@ consumption.value = computeConsumption(data.value);
 }
 
 .consumption {
+    margin: 20px 0;
+}
+
+.routing {
     margin-top: 20px;
+    width: 100%;
 }
 </style>

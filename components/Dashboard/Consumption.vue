@@ -5,27 +5,30 @@
             <span class="subtitle">{{ consumption.cpu.type }}</span>
             <div class="load">
                 <DashboardMetric
-                    :value="consumption.cpu.load"
+                    :value="Number(consumption.cpu.load)"
                     unit="%"
                     description="Load"
                 />
                 <DashboardMetric
-                    :value="consumption.cpu.loadAvg1Minute"
+                    :value="Number(consumption.cpu.loadAvg1Minute)"
                     unit="%"
                     description="1min"
                 />
                 <DashboardMetric
-                    :value="consumption.cpu.loadAvg5Minutes"
+                    :value="Number(consumption.cpu.loadAvg5Minutes)"
                     unit="%"
                     description="5min"
                 />
                 <DashboardMetric
-                    :value="consumption.cpu.loadAvg15Minutes"
+                    :value="Number(consumption.cpu.loadAvg15Minutes)"
                     unit="%"
                     description="15min"
                 />
             </div>
-            <ProgressBar :progress="consumption.cpu.load" class="progress" />
+            <ProgressBar
+                :progress="Number(consumption.cpu.load)"
+                class="progress"
+            />
         </div>
         <ColumnSeparator color="#eaebed" />
         <div class="metrics ram">
@@ -36,15 +39,12 @@
             </span>
             <div class="load">
                 <DashboardMetric
-                    :value="ramFree.quantity.toFixed(2)"
+                    :value="Number(ramFree.quantity.toFixed(2))"
                     :unit="ramFree.unit"
                     description="Free"
                 />
             </div>
-            <ProgressBar
-                :progress="ramConsumption as Number"
-                class="progress"
-            />
+            <ProgressBar :progress="Number(ramConsumption)" class="progress" />
         </div>
         <ColumnSeparator color="#eaebed" />
         <div class="metrics storage">
@@ -55,12 +55,15 @@
             </span>
             <div class="load">
                 <DashboardMetric
-                    :value="storageFree.quantity.toFixed(2)"
+                    :value="Number(storageFree.quantity.toFixed(2))"
                     :unit="storageFree.unit"
                     description="Free"
                 />
             </div>
-            <ProgressBar :progress="storageConsumption" class="progress" />
+            <ProgressBar
+                :progress="Number(storageConsumption)"
+                class="progress"
+            />
         </div>
     </div>
 </template>

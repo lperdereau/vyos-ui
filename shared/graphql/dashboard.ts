@@ -93,35 +93,35 @@ export const result_computed_ipv6 = [
     data: 12,
   },
   {
-    label: "conntected",
-    data: 59,
-  },
-  {
-    label: "RIP",
-    data: 13,
-  },
-  {
-    label: "OSPF",
-    data: 16,
-  },
-  {
-    label: "IS-IS",
-    data: 8,
-  },
-  {
-    label: "eBGP",
-    data: 15,
-  },
-  {
-    label: "iBGP",
-    data: 5,
-  },
-  {
-    label: "NHRP",
+    label: "connected",
     data: 32,
   },
   {
+    label: "RIP",
+    data: 21,
+  },
+  {
+    label: "OSPF",
+    data: 6,
+  },
+  {
+    label: "IS-IS",
+    data: 18,
+  },
+  {
+    label: "eBGP",
+    data: 5,
+  },
+  {
+    label: "iBGP",
+    data: 25,
+  },
+  {
+    label: "NHRP",
+    data: 52,
+  },
+  {
     label: "Babel",
-    data: 1,
+    data: 5,
   },
 ];

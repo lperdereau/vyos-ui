@@ -33,18 +33,26 @@ export function computeHardware(data: any): Hardware {
   return {
     cpu: {
       type: data.ShowCpu.data.result[0].modelname,
-      load: (
-        data.SystemStatus.data.result.uptime.load_average["1"] * 100
-      ).toFixed(1) as Number,
-      loadAvg1Minute: (
-        data.SystemStatus.data.result.uptime.load_average["1"] * 100
-      ).toFixed(1) as Number,
-      loadAvg5Minutes: (
-        data.SystemStatus.data.result.uptime.load_average["5"] * 100
-      ).toFixed(1) as Number,
-      loadAvg15Minutes: (
-        data.SystemStatus.data.result.uptime.load_average["15"] * 100
-      ).toFixed(1) as Number,
+      load: Number(
+        (data.SystemStatus.data.result.uptime.load_average["1"] * 100).toFixed(
+          1,
+        ),
+      ),
+      loadAvg1Minute: Number(
+        (data.SystemStatus.data.result.uptime.load_average["1"] * 100).toFixed(
+          1,
+        ),
+      ),
+      loadAvg5Minutes: Number(
+        (data.SystemStatus.data.result.uptime.load_average["5"] * 100).toFixed(
+          1,
+        ),
+      ),
+      loadAvg15Minutes: Number(
+        (data.SystemStatus.data.result.uptime.load_average["15"] * 100).toFixed(
+          1,
+        ),
+      ),
     },
     ram: {
       total: metricToBest({
@@ -72,7 +80,7 @@ export function computeHardware(data: any): Hardware {
 export function getRamConsumption(ram: RAM): Number {
   const total = convert(ram.total.size as number, ram.total.unit).to("B");
   const used = convert(ram.used.size as number, ram.used.unit).to("B");
-  return (used / total) * 100;
+  return Number((used / total) * 100);
 }
 
 export function getRamFree(ram: RAM): BestConversion {
@@ -87,7 +95,7 @@ export function getStorageConsumption(storage: Storage): Number {
     "imperial",
   );
   const used = convert(storage.used.size as number, storage.used.unit).to("B");
-  return (used / total) * 100;
+  return Number((used / total) * 100);
 }
 
 export function getStorageFree(storage: Storage): BestConversion {

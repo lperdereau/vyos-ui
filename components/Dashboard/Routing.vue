@@ -19,8 +19,8 @@
                     <span>{{ routes_total }}</span>
                 </div>
             </div>
-            <LineSeparator color="#eaebed" margin="0" />
-            <Bar :data="data" :options="options" style="height: 250px" />
+            <LineSeparator color="#eaebed" margin="0 0 20px 0" />
+            <Bar :data="data" :options="options" style="min-height: 250px" />
         </div>
         <ColumnSeparator color="#eaebed" />
         <div class="bgp">
@@ -145,6 +145,15 @@ const bgpData = ref({
         },
     ],
 });
+
+const bgpOptions = ref({
+    responsive: true,
+    plugins: {
+        legend: {
+            display: false,
+        },
+    },
+});
 </script>
 
 <style>
@@ -193,5 +202,9 @@ const bgpData = ref({
     display: flex;
     flex-direction: row;
     gap: 10px;
+}
+
+.bgp {
+    display: none;
 }
 </style>

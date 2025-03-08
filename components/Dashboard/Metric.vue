@@ -7,8 +7,8 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-    value: String,
+defineProps({
+    value: Number,
     unit: String,
     description: String,
 });

@@ -9,11 +9,13 @@ interface Props {
     color?: string;
     thickness?: number;
     height?: string;
+    margin?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
     color: "#000000",
     thickness: 1,
+    margin: "0 10px",
 });
 
 const colStyle = computed(() => {
@@ -21,12 +23,7 @@ const colStyle = computed(() => {
         backgroundColor: props.color,
         width: `${props.thickness}px`,
         height: props.height,
+        margin: props.margin,
     };
 });
 </script>
-
-<style scoped>
-.col-separator {
-    margin: 0 10px; /* Optional: Adds some horizontal margin */
-}
-</style>

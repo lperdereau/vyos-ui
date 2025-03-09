@@ -1,0 +1,232 @@
+{
+  "data": {
+    "ipv4": {
+      "success": true,
+      "errors": null,
+      "op_mode_error": null,
+      "data": {
+        "result": [
+          {
+            "prefix": "0.0.0.0/0",
+            "prefix_len": 0,
+            "protocol": "static",
+            "vrf_id": 0,
+            "vrf_name": "default",
+            "selected": true,
+            "dest_selected": true,
+            "distance": 210,
+            "metric": 0,
+            "installed": true,
+            "tag": 210,
+            "table": 254,
+            "internal_status": 16,
+            "internal_flags": 73,
+            "internal_next_hop_num": 1,
+            "internal_next_hop_active_num": 1,
+            "nexthop_group_id": 12,
+            "installed_nexthop_group_id": 12,
+            "uptime": "02:59:13",
+            "nexthops": [
+              {
+                "flags": 3,
+                "fib": true,
+                "ip": "10.14.99.254",
+                "afi": "ipv4",
+                "interface_index": 2,
+                "interface_name": "eth0",
+                "active": true,
+                "weight": 1
+              }
+            ]
+          },
+          {
+            "prefix": "10.14.99.0/24",
+            "prefix_len": 24,
+            "protocol": "connected",
+            "vrf_id": 0,
+            "vrf_name": "default",
+            "selected": true,
+            "dest_selected": true,
+            "distance": 0,
+            "metric": 0,
+            "installed": true,
+            "table": 254,
+            "internal_status": 16,
+            "internal_flags": 8,
+            "internal_next_hop_num": 1,
+            "internal_next_hop_active_num": 1,
+            "nexthop_group_id": 9,
+            "installed_nexthop_group_id": 9,
+            "uptime": "02:59:13",
+            "nexthops": [
+              {
+                "flags": 3,
+                "fib": true,
+                "directly_connected": true,
+                "interface_index": 2,
+                "interface_name": "eth0",
+                "active": true,
+                "weight": 1
+              }
+            ]
+          },
+          {
+            "prefix": "10.14.99.0/24",
+            "prefix_len": 24,
+            "protocol": "kernel",
+            "vrf_id": 0,
+            "vrf_name": "default",
+            "distance": 0,
+            "metric": 0,
+            "installed": true,
+            "table": 254,
+            "internal_status": 16,
+            "internal_flags": 0,
+            "internal_next_hop_num": 1,
+            "internal_next_hop_active_num": 1,
+            "nexthop_group_id": 10,
+            "uptime": "02:59:13",
+            "nexthops": [
+              {
+                "flags": 3,
+                "fib": true,
+                "directly_connected": true,
+                "interface_index": 2,
+                "interface_name": "eth0",
+                "active": true,
+                "weight": 1
+              }
+            ]
+          },
+          {
+            "prefix": "10.14.99.190/32",
+            "prefix_len": 32,
+            "protocol": "local",
+            "vrf_id": 0,
+            "vrf_name": "default",
+            "selected": true,
+            "dest_selected": true,
+            "distance": 0,
+            "metric": 0,
+            "installed": true,
+            "table": 254,
+            "internal_status": 16,
+            "internal_flags": 8,
+            "internal_next_hop_num": 1,
+            "internal_next_hop_active_num": 1,
+            "nexthop_group_id": 9,
+            "installed_nexthop_group_id": 9,
+            "uptime": "02:59:13",
+            "nexthops": [
+              {
+                "flags": 3,
+                "fib": true,
+                "directly_connected": true,
+                "interface_index": 2,
+                "interface_name": "eth0",
+                "active": true,
+                "weight": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "ipv6": {
+      "success": true,
+      "errors": null,
+      "op_mode_error": null,
+      "data": {
+        "result": [
+          {
+            "prefix": "fe80::/64",
+            "prefix_len": 64,
+            "protocol": "connected",
+            "vrf_id": 0,
+            "vrf_name": "default",
+            "distance": 0,
+            "metric": 0,
+            "installed": true,
+            "table": 254,
+            "internal_status": 16,
+            "internal_flags": 0,
+            "internal_next_hop_num": 1,
+            "internal_next_hop_active_num": 1,
+            "nexthop_group_id": 6,
+            "uptime": "02:59:16",
+            "nexthops": [
+              {
+                "flags": 3,
+                "fib": true,
+                "directly_connected": true,
+                "interface_index": 2,
+                "interface_name": "eth0",
+                "active": true,
+                "weight": 1
+              }
+            ]
+          },
+          {
+            "prefix": "fe80::/64",
+            "prefix_len": 64,
+            "protocol": "connected",
+            "vrf_id": 0,
+            "vrf_name": "default",
+            "distance": 0,
+            "metric": 0,
+            "installed": true,
+            "table": 254,
+            "internal_status": 16,
+            "internal_flags": 0,
+            "internal_next_hop_num": 1,
+            "internal_next_hop_active_num": 1,
+            "nexthop_group_id": 4,
+            "uptime": "02:59:17",
+            "nexthops": [
+              {
+                "flags": 3,
+                "fib": true,
+                "directly_connected": true,
+                "interface_index": 3,
+                "interface_name": "eth1",
+                "active": true,
+                "weight": 1
+              }
+            ]
+          },
+          {
+            "prefix": "fe80::/64",
+            "prefix_len": 64,
+            "protocol": "connected",
+            "vrf_id": 0,
+            "vrf_name": "default",
+            "selected": true,
+            "dest_selected": true,
+            "distance": 0,
+            "metric": 0,
+            "installed": true,
+            "table": 254,
+            "internal_status": 16,
+            "internal_flags": 8,
+            "internal_next_hop_num": 1,
+            "internal_next_hop_active_num": 1,
+            "nexthop_group_id": 2,
+            "installed_nexthop_group_id": 2,
+            "uptime": "02:59:19",
+            "nexthops": [
+              {
+                "flags": 3,
+                "fib": true,
+                "directly_connected": true,
+                "interface_index": 1,
+                "interface_name": "lo",
+                "active": true,
+                "weight": 1
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

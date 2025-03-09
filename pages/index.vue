@@ -1,6 +1,6 @@
 <template>
     <div class="page-content">
-        <h1>Dashboard</h1>
+        <h1 class="page-title">Dashboard</h1>
         <DashboardConsumption class="consumption" :consumption="consumption" />
         <LineSeparator color="#eaebed" />
         <DashboardRouting class="routing" />
@@ -43,7 +43,7 @@ consumption.value = computeHardware(data.value);
 }
 
 .consumption {
-    margin: 20px 0;
+    margin: 30px 0;
 }
 
 .routing {

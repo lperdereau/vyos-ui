@@ -11,17 +11,17 @@
 </template>
 
 <script setup lang="ts">
-import { useGraphQL } from "~/composables/useGraphQL";
-import { layout } from "#shared/graphql/layout";
+import {useDependencies} from "~/composables/useDependencies";
+import type {Layout} from "#shared/types/layout";
 
-const { client } = useGraphQL();
+const {vyOsAdapter} = useDependencies();
 
-const { data } = await useAsyncData("result", async () => {
-    return await client.request(layout, { key: "foo" });
+const {data} = await useAsyncData<Layout>("result", async () => {
+    return await vyOsAdapter.getLayout()
 });
 
-const name = ref(data.value.SystemStatus.data.result.host_name);
-const version = ref(data.value.SystemStatus.data.result.version.version);
+const name = ref(data.value?.host_name);
+const version = ref(data.value?.version.version);
 </script>
 
 <style>

@@ -9,23 +9,22 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { useGraphQL } from "~/composables/useGraphQL";
-import { dashboard } from "#shared/graphql/dashboard";
 import {
     type Hardware,
     computeHardware,
     defaultHardware,
 } from "#shared/types/hardware";
+import {useDependencies} from "~/composables/useDependencies";
 
 const consumption = ref<Hardware>(defaultHardware());
 
-const { client } = useGraphQL();
+const {vyOsAdapter} = useDependencies();
 
-const { data } = await useAsyncData("result", async () => {
-    return await client.request(dashboard, { key: "foo" });
+const { data } = await useAsyncData("dashboard", async () => {
+    return await vyOsAdapter.getDashboard()
 });
 
-consumption.value = computeHardware(data.value);
+consumption.value = data?.value || defaultHardware();
 </script>
 
 <style scoped>

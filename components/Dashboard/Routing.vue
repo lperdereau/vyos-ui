@@ -1,7 +1,7 @@
 <template>
     <div class="summary">
         <div class="routing-summary">
-            <DashboardRoutingChart />
+            <DashboardRoutingChart /> 
         </div>
         <ColumnSeparator color="#eaebed" margin="0 20px" />
         <div class="bgp">

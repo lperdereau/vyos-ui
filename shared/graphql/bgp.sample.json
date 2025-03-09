@@ -1,0 +1,106 @@
+{
+  "data": {
+    "summary": {
+      "success": true,
+      "errors": null,
+      "data": {
+        "result": {
+          "ipv4_unicast": {
+            "router_id": "10.14.99.190",
+            "as": 64517,
+            "vrf_id": 0,
+            "vrf_name": "default",
+            "table_version": 0,
+            "rib_count": 0,
+            "rib_memory": 0,
+            "peer_count": 1,
+            "peer_memory": 24072,
+            "peers": {
+              "10_1_1_1": {
+                "software_version": "n/a",
+                "remote_as": 4001,
+                "local_as": 64517,
+                "version": 4,
+                "msg_rcvd": 0,
+                "msg_sent": 0,
+                "table_version": 0,
+                "outq": 0,
+                "inq": 0,
+                "peer_uptime": "never",
+                "peer_uptime_msec": 0,
+                "pfx_rcd": 0,
+                "pfx_snt": 0,
+                "state": "Active",
+                "peer_state": "OK",
+                "connections_established": 0,
+                "connections_dropped": 0,
+                "id_type": "ipv4"
+              }
+            },
+            "failed_peers": 1,
+            "displayed_peers": 1,
+            "total_peers": 1,
+            "dynamic_peers": 0,
+            "best_path": {
+              "multi_path_relax": "false"
+            }
+          },
+          "ipv4_multicast": {
+            "router_id": "10.14.99.190",
+            "as": 64517,
+            "vrf_id": 0,
+            "vrf_name": "default",
+            "table_version": 0,
+            "rib_count": 0,
+            "rib_memory": 0,
+            "peer_count": 1,
+            "peer_memory": 24072,
+            "peers": {
+              "10_1_1_2": {
+                "software_version": "n/a",
+                "remote_as": 4003,
+                "local_as": 64517,
+                "version": 4,
+                "msg_rcvd": 0,
+                "msg_sent": 0,
+                "table_version": 0,
+                "outq": 0,
+                "inq": 0,
+                "peer_uptime": "never",
+                "peer_uptime_msec": 0,
+                "pfx_rcd": 0,
+                "pfx_snt": 0,
+                "state": "Active",
+                "peer_state": "OK",
+                "connections_established": 0,
+                "connections_dropped": 0,
+                "id_type": "ipv4"
+              }
+            },
+            "failed_peers": 1,
+            "displayed_peers": 1,
+            "total_peers": 1,
+            "dynamic_peers": 0,
+            "best_path": {
+              "multi_path_relax": "false"
+            }
+          }
+        }
+      }
+    },
+    "system_as": {
+      "success": true,
+      "errors": null,
+      "data": {
+        "result": " system-as 64517\n"
+      }
+    },
+    "router_id": {
+      "success": true,
+      "errors": null,
+      "data": {
+        "result": " router-id 10.14.99.190\n"
+      }
+    }
+  }
+}

@@ -32,45 +32,37 @@ export interface Hardware {
 export function computeHardware(data: any): Hardware {
   return {
     cpu: {
-      type: data.ShowCpu.data.result[0].modelname,
+      type: data.cpu.data.result[0].modelname,
       load: Number(
-        (data.SystemStatus.data.result.uptime.load_average["1"] * 100).toFixed(
-          1,
-        ),
+        (data.system.data.result.uptime.load_average["1"] * 100).toFixed(1),
       ),
       loadAvg1Minute: Number(
-        (data.SystemStatus.data.result.uptime.load_average["1"] * 100).toFixed(
-          1,
-        ),
+        (data.system.data.result.uptime.load_average["1"] * 100).toFixed(1),
       ),
       loadAvg5Minutes: Number(
-        (data.SystemStatus.data.result.uptime.load_average["5"] * 100).toFixed(
-          1,
-        ),
+        (data.system.data.result.uptime.load_average["5"] * 100).toFixed(1),
       ),
       loadAvg15Minutes: Number(
-        (data.SystemStatus.data.result.uptime.load_average["15"] * 100).toFixed(
-          1,
-        ),
+        (data.system.data.result.uptime.load_average["15"] * 100).toFixed(1),
       ),
     },
     ram: {
       total: metricToBest({
-        size: data.ShowMemory.data.result.total,
+        size: data.memory.data.result.total,
         unit: "B",
       }),
       used: metricToBest({
-        size: data.ShowMemory.data.result.used,
+        size: data.memory.data.result.used,
         unit: "B",
       }),
     },
     storage: {
       total: metricToBest({
-        size: data.ShowStorage.data.result.size,
+        size: data.storage.data.result.size,
         unit: "B",
       }),
       used: metricToBest({
-        size: data.ShowStorage.data.result.used,
+        size: data.storage.data.result.used,
         unit: "B",
       }),
     },

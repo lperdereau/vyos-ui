@@ -1,5 +1,5 @@
 {
-  "SystemStatus": {
+  "system": {
     "data": {
       "result": {
         "host_name": "vyos-lperdereau-1",
@@ -44,7 +44,7 @@
     "errors": null,
     "success": true
   },
-  "ShowCpu": {
+  "cpu": {
     "success": true,
     "errors": null,
     "data": {
@@ -80,7 +80,7 @@
     },
     "op_mode_error": null
   },
-  "ShowMemory": {
+  "memory": {
     "success": true,
     "errors": null,
     "data": {
@@ -94,7 +94,7 @@
     },
     "op_mode_error": null
   },
-  "ShowStorage": {
+  "storage": {
     "success": true,
     "errors": null,
     "data": {

@@ -1,9 +1,0 @@
-query ShowLog {
-    logs: ShowLog(data: { key: "foo" }) {
-        success
-        errors
-        data {
-            result
-        }
-    }
-}

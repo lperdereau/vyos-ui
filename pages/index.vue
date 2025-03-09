@@ -9,19 +9,15 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import {
-    type Hardware,
-    computeHardware,
-    defaultHardware,
-} from "#shared/types/hardware";
-import {useDependencies} from "~/composables/useDependencies";
+import { type Hardware, defaultHardware } from "#shared/types/hardware";
+import { useDependencies } from "~/composables/useDependencies";
 
 const consumption = ref<Hardware>(defaultHardware());
 
-const {vyOsAdapter} = useDependencies();
+const { vyOsAdapter } = useDependencies();
 
 const { data } = await useAsyncData("dashboard", async () => {
-    return await vyOsAdapter.getDashboard()
+    return await vyOsAdapter.getDashboard();
 });
 
 consumption.value = data?.value || defaultHardware();

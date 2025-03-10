@@ -1,7 +1,9 @@
 <template>
-    <div>
-        <h1 class="page-title">Alerts</h1>
-    </div>
+  <div>
+    <h1 class="page-title">
+      Alerts
+    </h1>
+  </div>
 </template>
 
 <style>

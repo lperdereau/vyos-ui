@@ -1,6 +1,6 @@
 export type Layout = {
-  host_name: string;
+  host_name: string
   version: {
-    version: string;
-  };
-};
+    version: string
+  }
+}

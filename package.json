@@ -7,9 +7,11 @@
     "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "lint": "eslint ."
   },
   "dependencies": {
+    "@nuxt/eslint": "^1.2.0",
     "@tanstack/vue-query": "^5.67.1",
     "chart.js": "^4.4.8",
     "convert": "^5.8.0",
@@ -20,5 +22,9 @@
     "vue": "^3.5.13",
     "vue-chartjs": "^5.3.2",
     "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@nuxt/eslint-config": "^1.2.0",
+    "eslint": "^9.22.0"
   }
 }

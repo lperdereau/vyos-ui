@@ -1,17 +1,17 @@
 <template>
-    <div class="metric">
-        <span class="value">{{ value }}</span>
-        <span class="unit">{{ unit }}</span>
-        <span class="description">{{ description }}</span>
-    </div>
+  <div class="metric">
+    <span class="value">{{ value }}</span>
+    <span class="unit">{{ unit }}</span>
+    <span class="description">{{ description }}</span>
+  </div>
 </template>
 
 <script setup lang="ts">
 defineProps({
-    value: Number,
-    unit: String,
-    description: String,
-});
+  value: Number,
+  unit: String,
+  description: String,
+})
 </script>
 
 <style>

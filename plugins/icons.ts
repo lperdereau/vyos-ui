@@ -1,4 +1,4 @@
-import { OhVueIcon, addIcons } from "oh-vue-icons";
+import { OhVueIcon, addIcons } from 'oh-vue-icons'
 import {
   MdDashboardOutlined,
   PrBell,
@@ -8,7 +8,7 @@ import {
   BiEthernet,
   BiFileEarmarkText,
   BiGearFill,
-} from "oh-vue-icons/icons";
+} from 'oh-vue-icons/icons'
 
 export default defineNuxtPlugin((app) => {
   addIcons(
@@ -20,7 +20,7 @@ export default defineNuxtPlugin((app) => {
     BiEthernet,
     BiFileEarmarkText,
     BiGearFill,
-  );
+  )
 
-  app.vueApp.component("v-icon", OhVueIcon);
-});
+  app.vueApp.component('v-icon', OhVueIcon)
+})

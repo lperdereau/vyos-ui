@@ -1,7 +1,7 @@
 export interface Log {
-  time: string;
-  component: string;
-  message: string;
+  time: string
+  component: string
+  message: string
 }
 
 export function computeLogs(logsJson: any): Log[] {
@@ -10,11 +10,11 @@ export function computeLogs(logsJson: any): Log[] {
       time: unixTimestampToDate(log.realtime_timestamp),
       component: `${log.comm}[${log.pid}]`,
       message: log.message,
-    };
-  });
+    }
+  })
 }
 
 function unixTimestampToDate(unixTimestamp: number): string {
-  const date = new Date(unixTimestamp / 1000);
-  return date.toUTCString().slice(5, 22);
+  const date = new Date(unixTimestamp / 1000)
+  return date.toUTCString().slice(5, 22)
 }

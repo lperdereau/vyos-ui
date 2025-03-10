@@ -1,29 +1,32 @@
 <template>
-    <div class="col-separator" :style="colStyle"></div>
+  <div
+    class="col-separator"
+    :style="colStyle"
+  />
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed } from 'vue'
 
 interface Props {
-    color?: string;
-    thickness?: number;
-    height?: string;
-    margin?: string;
+  color?: string
+  thickness?: number
+  height?: string
+  margin?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
-    color: "#000000",
-    thickness: 1,
-    margin: "0 10px",
-});
+  color: '#000000',
+  thickness: 1,
+  margin: '0 10px',
+})
 
 const colStyle = computed(() => {
-    return {
-        backgroundColor: props.color,
-        width: `${props.thickness}px`,
-        height: props.height,
-        margin: props.margin,
-    };
-});
+  return {
+    backgroundColor: props.color,
+    width: `${props.thickness}px`,
+    height: props.height,
+    margin: props.margin,
+  }
+})
 </script>

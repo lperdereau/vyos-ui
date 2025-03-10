@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag'
 
 export const bgp = gql`
   query ShowBgp {
@@ -31,4 +31,4 @@ export const bgp = gql`
       }
     }
   }
-`;
+`

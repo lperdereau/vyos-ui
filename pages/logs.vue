@@ -1,23 +1,25 @@
 <template>
-    <div class="page-content">
-        <h1 class="page-title">Logs</h1>
-        <div class="content">
-            <LogsTable :logs="logs" />
-        </div>
+  <div class="page-content">
+    <h1 class="page-title">
+      Logs
+    </h1>
+    <div class="content">
+      <LogsTable :logs="logs" />
     </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { useDependencies } from "~/composables/useDependencies";
-import type { Log } from "~/shared/types/logs";
+import { useDependencies } from '~/composables/useDependencies'
+import type { Log } from '~/shared/types/logs'
 
-const { vyOsAdapter } = useDependencies();
+const { vyOsAdapter } = useDependencies()
 
-const { data } = await useAsyncData("logs", async () => {
-    return await vyOsAdapter.getLogs();
-});
+const { data } = await useAsyncData('logs', async () => {
+  return await vyOsAdapter.getLogs()
+})
 
-const logs: Log[] = data?.value || [];
+const logs: Log[] = data?.value || []
 </script>
 
 <style>

@@ -8,8 +8,15 @@
   </div>
 </template>
 
-<script setup>
-const props = defineProps(['to', 'icon', 'title', 'selected'])
+<script setup lang="ts">
+interface Props {
+  to: string
+  icon: string
+  title: string
+  selected: boolean
+}
+
+const props = defineProps<Props>()
 
 function handler() {
   if (props.to) navigateTo(props.to)

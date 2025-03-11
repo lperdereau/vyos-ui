@@ -2,12 +2,14 @@
   <div class="header">
     <div class="tabs">
       <span
-        :class="{ active: active == 'ipv4' }"
-        @click="handle('ipv4')"
-      >IPv4</span>
+        :class="{ active: active == InternetProtocol.IPv4 }"
+        @click="$emit('update:active', InternetProtocol.IPv4)"
+      >
+        IPv4
+      </span>
       <span
-        :class="{ active: active == 'ipv6' }"
-        @click="handle('ipv6')"
+        :class="{ active: active == InternetProtocol.IPv6 }"
+        @click="$emit('update:active', InternetProtocol.IPv6)"
       >IPv6</span>
     </div>
     <div class="total">
@@ -27,17 +29,25 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { Bar } from 'vue-chartjs'
-import { result_computed_ipv4, result_computed_ipv6 } from '#shared/graphql/dashboard'
+import {
+  InternetProtocol,
+  type RouteProtocol,
+  type RouteStats,
+  protocolToTitle,
+} from '#shared/types/routes'
 
-const active = ref('ipv4')
-
-const routes_total = ref(160)
-
-function handle(value: string) {
-  active.value = value
+interface Props {
+  routeStats: RouteStats
 }
+
+const props = defineProps<Props>()
+const active = defineModel<InternetProtocol>('active', { required: true })
+defineEmits(['update:active'])
+
+const routes_total = computed(() => {
+  return Object.values(props.route_stats).reduce((acc, curr) => acc + curr, 0)
+})
 
 const colors = {
   'kernel': {
@@ -45,6 +55,12 @@ const colors = {
   },
   'connected': {
     backgroundColor: 'rgba(71, 214, 130, 0.7)',
+  },
+  'local': {
+    backgroundColor: 'rgba(64, 235, 225, 1)',
+  },
+  'static': {
+    backgroundColor: 'rgba(255, 191, 18, 0.7)',
   },
   'rip': {
     backgroundColor: 'rgba(163, 174, 179, 0.7)',
@@ -70,28 +86,21 @@ const colors = {
 }
 
 const data = computed(() => {
-  const result_computed = ref<any>([])
-  if (active.value === 'ipv4') {
-    result_computed.value = result_computed_ipv4
-  }
-  else {
-    result_computed.value = result_computed_ipv6
-  }
-
+  const labels = Object.keys(props.route_stats).map((protocol: string) =>
+    protocolToTitle(protocol as RouteProtocol),
+  )
   return {
-    labels: result_computed.value.map((item: any) => item.label),
+    labels,
     datasets: [
       {
-        data: result_computed.value.map((item: any) => item.data),
+        data: Object.keys(props.route_stats).map(
+          (protocol: string) => props.route_stats[protocol],
+        ),
         borderRadius: 2,
         backgroundColor: function (context) {
-          const obj
-              = colors[
-                result_computed.value[
-                  context.dataIndex
-                ].label.toLowerCase()
-              ]
-          return obj ? obj.backgroundColor : '#fff'
+          if (!labels[context.dataIndex]) return '#fff'
+          const label = labels[context.dataIndex].toLowerCase()
+          return colors[label] ? colors[label].backgroundColor : '#fff'
         },
       },
     ],
@@ -101,9 +110,18 @@ const data = computed(() => {
 const options = ref({
   indexAxis: 'y',
   responsive: true,
+  barThickness: 16,
   plugins: {
     legend: {
       display: false,
+    },
+  },
+  scales: {
+    x: {
+      min: 0,
+      ticks: {
+        precision: 0,
+      },
     },
   },
 })

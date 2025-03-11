@@ -9,5 +9,5 @@ export default createConfigForNuxt({
     '@typescript-eslint/no-explicit-any': 'warn',
   },
 }).overrideRules({
-  'vue/multi-word-component-names': 'warn',
+  'vue/multi-word-component-names': 'off',
 })

@@ -83,7 +83,7 @@ import {
 } from '#shared/types/hardware'
 
 interface Props {
-  consumption: Hardware
+  consumption?: Hardware
 }
 
 const props = withDefaults(defineProps<Props>(), {

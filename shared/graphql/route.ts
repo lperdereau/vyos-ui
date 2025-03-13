@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag'
 
 export const route = gql`
   query ShowRoute {
@@ -27,4 +27,4 @@ export const route = gql`
       }
     }
   }
-`;
+`

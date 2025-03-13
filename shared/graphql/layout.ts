@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag'
 
 export const layout = gql`
   query Layout($key: String!) {
@@ -10,4 +10,4 @@ export const layout = gql`
       success
     }
   }
-`;
+`

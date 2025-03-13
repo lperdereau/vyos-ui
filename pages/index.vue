@@ -1,26 +1,31 @@
 <template>
-    <div class="page-content">
-        <h1 class="page-title">Dashboard</h1>
-        <DashboardConsumption class="consumption" :consumption="consumption" />
-        <LineSeparator color="#eaebed" />
-        <DashboardRouting class="routing" />
-    </div>
+  <div class="page-content">
+    <h1 class="page-title">
+      Dashboard
+    </h1>
+    <DashboardConsumption
+      class="consumption"
+      :consumption="consumption"
+    />
+    <LineSeparator color="#eaebed" />
+    <DashboardRouting class="routing" />
+  </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import { type Hardware, defaultHardware } from "#shared/types/hardware";
-import { useDependencies } from "~/composables/useDependencies";
+import { ref } from 'vue'
+import { type Hardware, defaultHardware } from '#shared/types/hardware'
+import { useDependencies } from '~/composables/useDependencies'
 
-const consumption = ref<Hardware>(defaultHardware());
+const consumption = ref<Hardware>(defaultHardware())
 
-const { vyOsAdapter } = useDependencies();
+const { vyOsAdapter } = useDependencies()
 
-const { data } = await useAsyncData("dashboard", async () => {
-    return await vyOsAdapter.getDashboard();
-});
+const { data } = await useAsyncData('dashboard', async () => {
+  return await vyOsAdapter.getDashboard()
+})
 
-consumption.value = data?.value || defaultHardware();
+consumption.value = data?.value || defaultHardware()
 </script>
 
 <style scoped>

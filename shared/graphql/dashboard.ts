@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag'
 
 export const dashboard = gql`
   query Dashboard($key: String!) {
@@ -46,82 +46,82 @@ export const dashboard = gql`
       }
     }
   }
-`;
+`
 
 export const result_computed_ipv4 = [
   {
-    label: "kernel",
+    label: 'kernel',
     data: 12,
   },
   {
-    label: "connected",
+    label: 'connected',
     data: 59,
   },
   {
-    label: "RIP",
+    label: 'RIP',
     data: 13,
   },
   {
-    label: "OSPF",
+    label: 'OSPF',
     data: 16,
   },
   {
-    label: "IS-IS",
+    label: 'IS-IS',
     data: 8,
   },
   {
-    label: "eBGP",
+    label: 'eBGP',
     data: 15,
   },
   {
-    label: "iBGP",
+    label: 'iBGP',
     data: 5,
   },
   {
-    label: "NHRP",
+    label: 'NHRP',
     data: 32,
   },
   {
-    label: "Babel",
+    label: 'Babel',
     data: 1,
   },
-];
+]
 
 export const result_computed_ipv6 = [
   {
-    label: "kernel",
+    label: 'kernel',
     data: 12,
   },
   {
-    label: "connected",
+    label: 'connected',
     data: 32,
   },
   {
-    label: "RIP",
+    label: 'RIP',
     data: 21,
   },
   {
-    label: "OSPF",
+    label: 'OSPF',
     data: 6,
   },
   {
-    label: "IS-IS",
+    label: 'IS-IS',
     data: 18,
   },
   {
-    label: "eBGP",
+    label: 'eBGP',
     data: 5,
   },
   {
-    label: "iBGP",
+    label: 'iBGP',
     data: 25,
   },
   {
-    label: "NHRP",
+    label: 'NHRP',
     data: 52,
   },
   {
-    label: "Babel",
+    label: 'Babel',
     data: 5,
   },
-];
+]

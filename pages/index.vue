@@ -10,8 +10,8 @@
     <LineSeparator color="#eaebed" />
     <DashboardRouting
       class="routing"
-      :routes_ipv4="routes_ipv4"
-      :routes_ipv6="routes_ipv6"
+      :routes_ipv4="routesIPv4"
+      :routes_ipv6="routesIPv6"
     />
   </div>
 </template>
@@ -23,8 +23,8 @@ import { InternetProtocol, type Route } from '#shared/types/routes'
 import { useDependencies } from '~/composables/useDependencies'
 
 const consumption = ref<Hardware>(defaultHardware())
-const routes_ipv4 = ref<Route[]>([])
-const routes_ipv6 = ref<Route[]>([])
+const routesIPv4 = ref<Route[]>([])
+const routesIPv6 = ref<Route[]>([])
 
 const { vyOsAdapter } = useDependencies()
 
@@ -32,17 +32,17 @@ const hardware = await useAsyncData('dashboard', async () => {
   return await vyOsAdapter.getDashboard()
 })
 
-const routing_ipv4 = await useAsyncData('routes_ipv4', async () => {
+const routingIPv4 = await useAsyncData('routes_ipv4', async () => {
   return await vyOsAdapter.getRoutes(InternetProtocol.IPv4)
 })
 
-const routing_ipv6 = await useAsyncData('routes_ipv6', async () => {
+const routingIPv6 = await useAsyncData('routes_ipv6', async () => {
   return await vyOsAdapter.getRoutes(InternetProtocol.IPv6)
 })
 
 consumption.value = hardware.data?.value || defaultHardware()
-routes_ipv4.value = routing_ipv4.data?.value || []
-routes_ipv6.value = routing_ipv6.data?.value || []
+routesIPv4.value = routingIPv4.data?.value || []
+routesIPv6.value = routingIPv6.data?.value || []
 </script>
 
 <style scoped>

@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="['item', { selected }]"
+    :class="['item', { selected: $route.path === props.to }]"
     @click="handler"
   >
     <v-icon :name="icon" />
@@ -13,7 +13,6 @@ interface Props {
   to: string
   icon: string
   title: string
-  selected: boolean
 }
 
 const props = defineProps<Props>()

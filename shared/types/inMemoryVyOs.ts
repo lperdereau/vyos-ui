@@ -21,7 +21,6 @@ export class InMemoryVyOs implements VyOsAdapter {
   }
 
   async getLogs(): Promise<Log[]> {
-    console.log(computeLogs(logsJson.data.logs.data.result))
     return computeLogs(logsJson.data.logs.data.result)
   }
 

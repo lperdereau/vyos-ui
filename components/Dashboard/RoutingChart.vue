@@ -38,7 +38,7 @@ import {
 } from '#shared/types/routes'
 
 interface Props {
-  routeStats: RouteStats
+  route_stats: RouteStats
 }
 
 const props = defineProps<Props>()

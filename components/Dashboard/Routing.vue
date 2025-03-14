@@ -3,7 +3,7 @@
     <div class="routing-summary">
       <DashboardRoutingChart
         v-model:active="activeInet"
-        :route_stats="route_stats"
+        :route_stats="routeStats"
         @update:active="activeInet = $event"
       />
     </div>
@@ -33,19 +33,19 @@ import {
 const activeInet = ref<InternetProtocol>(InternetProtocol.IPv4)
 
 interface Props {
-  routesIPv4?: Route[]
-  routesIPv6?: Route[]
+  routes_ipv4?: Route[]
+  routes_ipv6?: Route[]
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  routesIPv4: () => [],
-  routesIPv6: () => [],
+  routes_ipv4: () => [],
+  routes_ipv6: () => [],
 })
-const route_stats = computed<RouteStats>(() => {
+const routeStats = computed<RouteStats>(() => {
   const routes
     = activeInet.value === InternetProtocol.IPv4
-      ? props.routesIPv4
-      : props.routesIPv6
+      ? props.routes_ipv4
+      : props.routes_ipv6
   return getStatsRoutes(routes)
 })
 </script>

@@ -5,7 +5,7 @@ import { GraphQLVyOs } from '#shared/types/graphQLVyOs'
 
 export const useDependencies = (): { vyOsAdapter: VyOsAdapter } => {
   // TODO Changer la var d'env
-  if (process.env.NODE_ENV === 'a') {
+  if (process.env.NODE_ENV === 'development') {
     return { vyOsAdapter: new InMemoryVyOs() }
   }
   const { client } = useGraphQL()

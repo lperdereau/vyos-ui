@@ -11,11 +11,12 @@ import type { Log } from '#shared/types/logs'
 import { computeLogs } from '#shared/types/logs'
 import { logs } from '#shared/graphql/logs'
 
-import { type Route, InternetProtocol } from '#shared/types/routes'
-import { computeRoutes } from '#shared/types/routes'
+import { computeRoutes, InternetProtocol, type Route } from '#shared/types/routes'
 import { routes_ipv4, routes_ipv6 } from '#shared/graphql/routes'
 
 import type { VyOsAdapter } from '#shared/types/VyOsAdapter'
+import type { GraphQLLayout } from '#shared/graphql/type/graphQLLayout'
+import type { VyOsRoot } from '#shared/graphql/type/GraphQLRoot'
 
 export class GraphQLVyOs implements VyOsAdapter {
   constructor(private readonly client: GraphQLClient) {
@@ -28,7 +29,7 @@ export class GraphQLVyOs implements VyOsAdapter {
   }
 
   async getLayout(): Promise<Layout> {
-    const data: any = await this.client.request(layout, { key: 'foo' })
+    const data = await this.client.request<VyOsRoot<GraphQLLayout>>(layout, { key: 'foo' })
     return {
       host_name: data.SystemStatus.data.result.host_name,
       version: { version: data.SystemStatus.data.result.version.version },

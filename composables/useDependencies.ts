@@ -1,7 +1,7 @@
 import { useGraphQL } from '~/composables/useGraphQL'
 import type { VyOsAdapter } from '#shared/types/VyOsAdapter'
-import { InMemoryVyOs } from '#shared/types/inMemoryVyOs'
-import { GraphQLVyOs } from '#shared/types/graphQLVyOs'
+import { InMemoryVyOs } from '~/gateways/inMemoryVyOs'
+import { GraphQLVyOs } from '~/gateways/graphQLVyOs'
 
 export const useDependencies = (): { vyOsAdapter: VyOsAdapter } => {
   // TODO Changer la var d'env

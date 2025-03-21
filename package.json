@@ -25,6 +25,9 @@
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^1.2.0",
-    "eslint": "^9.22.0"
+    "eslint": "^9.22.0",
+    "msw": "^2.7.3",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.0.9"
   }
 }

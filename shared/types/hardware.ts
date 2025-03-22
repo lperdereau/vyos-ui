@@ -1,4 +1,5 @@
 import convert, { type BestConversion } from 'convert'
+import type { GraphQLDashboard } from '#shared/graphql/type/GraphQLDashboard'
 
 export interface CPU {
   load: number
@@ -29,7 +30,7 @@ export interface Hardware {
   storage: Storage
 }
 
-export function computeHardware(data: any): Hardware {
+export function computeHardware(data: GraphQLDashboard): Hardware {
   return {
     cpu: {
       type: data.cpu.data.result[0].modelname,
@@ -100,12 +101,12 @@ export function getStorageFree(storage: Storage): BestConversion {
 }
 
 export function metricToBest(metric: Metric): Metric {
-  const res = convert(metric.size as number, metric.unit).to(
+  const res = convert(metric.size, metric.unit).to(
     'best',
     'imperial',
   )
   return {
-    size: res.quantity.toFixed(2),
+    size: Number(res.quantity.toFixed(2)),
     unit: res.unit,
   }
 }

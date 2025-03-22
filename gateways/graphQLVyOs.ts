@@ -17,6 +17,7 @@ import { routes_ipv4, routes_ipv6 } from '#shared/graphql/routes'
 import type { VyOsAdapter } from '#shared/types/VyOsAdapter'
 import type { GraphQLLayout } from '#shared/graphql/type/graphQLLayout'
 import type { VyOsRoot } from '#shared/graphql/type/GraphQLRoot'
+import type { GraphQLDashboard } from '#shared/graphql/type/GraphQLDashboard'
 
 export class GraphQLVyOs implements VyOsAdapter {
   constructor(private readonly client: GraphQLClient) {
@@ -24,7 +25,7 @@ export class GraphQLVyOs implements VyOsAdapter {
   }
 
   async getDashboard(): Promise<Hardware> {
-    const data = await this.client.request(dashboard, { key: 'foo' })
+    const data = await this.client.request<GraphQLDashboard>(dashboard, { key: 'foo' })
     return computeHardware(data)
   }
 

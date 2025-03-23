@@ -1,4 +1,4 @@
-import type { GraphQLLog } from '#shared/graphql/type/GraphQLLogs'
+import type { GraphQLLog } from '~/gateways/graphql/type/GraphQLLogs'
 
 export interface Log {
   time: string

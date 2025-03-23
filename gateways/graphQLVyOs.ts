@@ -2,23 +2,23 @@ import type { GraphQLClient } from 'graphql-request'
 
 import type { Hardware } from '#shared/types/hardware'
 import { computeHardware } from '#shared/types/hardware'
-import { dashboard } from '#shared/graphql/dashboard'
+import { dashboard } from '~/gateways/graphql/dashboard'
 
 import type { Layout } from '#shared/types/layout'
-import { layout } from '#shared/graphql/layout'
+import { layout } from '~/gateways/graphql/layout'
 
 import type { Log } from '#shared/types/logs'
 import { computeLogs } from '#shared/types/logs'
-import { logs } from '#shared/graphql/logs'
+import { logs } from '~/gateways/graphql/logs'
 
 import { computeRoutes, InternetProtocol, type Route } from '#shared/types/routes'
-import { routes_ipv4, routes_ipv6 } from '#shared/graphql/routes'
+import { routes_ipv4, routes_ipv6 } from '~/gateways/graphql/routes'
 
 import type { VyOsAdapter } from '#shared/types/VyOsAdapter'
-import type { GraphQLLayout } from '#shared/graphql/type/graphQLLayout'
-import type { VyOsRoot } from '#shared/graphql/type/GraphQLRoot'
-import type { GraphQLDashboard } from '#shared/graphql/type/GraphQLDashboard'
-import type { GraphQLLogs } from '#shared/graphql/type/GraphQLLogs'
+import type { GraphQLLayout } from '~/gateways/graphql/type/graphQLLayout'
+import type { VyOsRoot } from '~/gateways/graphql/type/GraphQLRoot'
+import type { GraphQLDashboard } from '~/gateways/graphql/type/GraphQLDashboard'
+import type { GraphQLLogs } from '~/gateways/graphql/type/GraphQLLogs'
 
 export class GraphQLVyOs implements VyOsAdapter {
   constructor(private readonly client: GraphQLClient) {

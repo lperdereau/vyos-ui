@@ -1,10 +1,10 @@
 import type { VyOsAdapter } from '#shared/types/VyOsAdapter'
 import type { Hardware } from '#shared/types/hardware'
 import { computeHardware } from '#shared/types/hardware'
-import dashboardJson from '#shared/graphql/dashboard.sample.json'
-import logsJson from '#shared/graphql/logs.sample.json'
+import dashboardJson from '~/gateways/graphql/dashboard.sample.json'
+import logsJson from '~/gateways/graphql/logs.sample.json'
 import { computeRoutes, type Route } from '#shared/types/routes'
-import routesJson from '#shared/graphql/routes.sample.json'
+import routesJson from '~/gateways/graphql/routes.sample.json'
 import type { Layout } from '#shared/types/layout'
 import { computeLogs, type Log } from '#shared/types/logs'
 

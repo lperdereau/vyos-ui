@@ -1,5 +1,5 @@
 import convert, { type BestConversion } from 'convert'
-import type { GraphQLDashboard } from '#shared/graphql/type/GraphQLDashboard'
+import type { GraphQLDashboard } from '~/gateways/graphql/type/GraphQLDashboard'
 
 export interface CPU {
   load: number

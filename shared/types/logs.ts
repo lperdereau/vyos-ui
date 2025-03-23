@@ -1,11 +1,13 @@
+import type { GraphQLLog } from '#shared/graphql/type/GraphQLLogs'
+
 export interface Log {
   time: string
   component: string
   message: string
 }
 
-export function computeLogs(logsJson: any): Log[] {
-  return logsJson.map((log: any) => {
+export function computeLogs(logsJson: GraphQLLog[]): Log[] {
+  return logsJson.map((log) => {
     return {
       time: unixTimestampToDate(log.realtime_timestamp),
       component: `${log.comm}[${log.pid}]`,

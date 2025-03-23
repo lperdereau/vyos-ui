@@ -68,5 +68,17 @@ describe('graphQLVyOS Adapter', () => {
         expect(dashboad.ram).toStrictEqual(fakeRam())
       })
     })
+    describe('Logs', () => {
+      it('should return the logs', async () => {
+        const graphQLVyOs = new GraphQLVyOs(new GraphQLClient('http://localhost:3000'))
+        const logs = await graphQLVyOs.getLogs()
+
+        expect(logs[0]).toStrictEqual({
+          component: 'vyos-http-api-s[3885]',
+          message: 'INFO:      - "POST /graphql HTTP/1.0" 200 OK',
+          time: '09 Mar 2025 11:53',
+        })
+      })
+    })
   })
 })

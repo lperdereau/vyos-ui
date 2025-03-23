@@ -18,6 +18,7 @@ import type { VyOsAdapter } from '#shared/types/VyOsAdapter'
 import type { GraphQLLayout } from '#shared/graphql/type/graphQLLayout'
 import type { VyOsRoot } from '#shared/graphql/type/GraphQLRoot'
 import type { GraphQLDashboard } from '#shared/graphql/type/GraphQLDashboard'
+import type { GraphQLLogs } from '#shared/graphql/type/GraphQLLogs'
 
 export class GraphQLVyOs implements VyOsAdapter {
   constructor(private readonly client: GraphQLClient) {
@@ -38,7 +39,7 @@ export class GraphQLVyOs implements VyOsAdapter {
   }
 
   async getLogs(): Promise<Log[]> {
-    const data: any = await this.client.request(logs, { key: 'foo' })
+    const data = await this.client.request<GraphQLLogs>(logs, { key: 'foo' })
     return computeLogs(data.logs.data.result)
   }
 

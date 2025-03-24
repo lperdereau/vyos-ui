@@ -25,7 +25,7 @@
           description="15min"
         />
       </div>
-      <ProgressBar
+      <MyProgressBar
         :progress="Number(consumption.cpu.load)"
         class="progress"
       />
@@ -44,7 +44,7 @@
           description="Free"
         />
       </div>
-      <ProgressBar
+      <MyProgressBar
         :progress="Number(ramConsumption)"
         class="progress"
       />
@@ -63,7 +63,7 @@
           description="Free"
         />
       </div>
-      <ProgressBar
+      <MyProgressBar
         :progress="Number(storageConsumption)"
         class="progress"
       />

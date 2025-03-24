@@ -1,0 +1,11 @@
+{
+    "data": {
+        "ShowConfig": {
+            "success": true,
+            "errors": null,
+            "data": {
+                "result": " group {\n     address-group ADR_NMS_ENIX_V4 {\n         address 193.19.211.182\n         description nms.enix.org\n     }\n     network-group NET_ENIXPRIV_V4 {\n         description \"Public addresses of ENIX-PRIV\"\n         network 193.19.208.32/29\n     }\n }\n ipv4 {\n     name ALLOW_ALL {\n         default-action accept\n     }\n     name DENY_ALL {\n         default-action drop\n     }\n }\n zone LAN {\n     default-action drop\n     from LOCAL {\n         firewall {\n             name ALLOW_ALL\n         }\n     }\n     member {\n         interface eth1\n     }\n }\n zone LOCAL {\n     from WAN {\n         firewall {\n             name ALLOW_ALL\n         }\n     }\n     local-zone\n }\n zone WAN {\n     from LOCAL {\n         firewall {\n             name ALLOW_ALL\n         }\n     }\n     member {\n         interface eth0\n     }\n }\n"
+            }
+        }
+    }
+}

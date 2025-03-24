@@ -1,4 +1,5 @@
 import type { GraphQLClient } from 'graphql-request'
+import type { Config } from '@lperdereau/vyos-parser'
 
 import type { Hardware } from '#shared/types/hardware'
 import { computeHardware } from '#shared/types/hardware'
@@ -47,5 +48,9 @@ export class GraphQLVyOs implements VyOsAdapter {
     const request = inet === InternetProtocol.IPv4 ? routes_ipv4 : routes_ipv6
     const data: any = await this.client.request(request, { key: 'foo' })
     return computeRoutes(data[inet].data.result)
+  }
+
+  async getConfig(): Promise<Config | null> {
+    return null
   }
 }

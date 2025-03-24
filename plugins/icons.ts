@@ -2,7 +2,8 @@ import { OhVueIcon, addIcons } from 'oh-vue-icons'
 import {
   MdDashboardOutlined,
   PrBell,
-  BiShieldLock,
+  OiShieldLock,
+  OiShieldCheck,
   RiRouteLine,
   FaNetworkWired,
   BiEthernet,
@@ -14,7 +15,8 @@ export default defineNuxtPlugin((app) => {
   addIcons(
     MdDashboardOutlined,
     PrBell,
-    BiShieldLock,
+    OiShieldLock,
+    OiShieldCheck,
     RiRouteLine,
     FaNetworkWired,
     BiEthernet,

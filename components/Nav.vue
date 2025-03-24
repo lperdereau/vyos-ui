@@ -17,8 +17,13 @@
         icon="pr-bell"
       />
       <NavItem
+        title="Firewall"
+        to="/firewall"
+        icon="oi-shield-check"
+      />
+      <NavItem
         title="VPN"
-        icon="bi-shield-lock"
+        icon="oi-shield-lock"
       />
       <NavItem
         title="Routing"

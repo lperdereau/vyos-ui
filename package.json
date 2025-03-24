@@ -11,6 +11,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@lperdereau/vyos-parser": "^0.0.5",
     "@nuxt/eslint": "^1.2.0",
     "@tanstack/vue-query": "^5.67.1",
     "chart.js": "^4.4.8",

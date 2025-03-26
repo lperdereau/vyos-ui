@@ -28,29 +28,6 @@ import type {
 } from '~/shared/types/firewall'
 
 const config = ref(await useDependencies().vyOsAdapter.getFirewall())
-console.log(config)
-
-const data = ref([{
-  name: 'group1',
-  description: 'description1',
-  group: 'group',
-  type: 'type',
-}, {
-  name: 'group2',
-  description: 'description2',
-  group: 'group',
-  type: 'type',
-}, {
-  name: 'group2',
-  description: 'description2',
-  group: 'group',
-  type: 'type',
-}, {
-  name: 'group2',
-  description: 'description2',
-  group: 'group',
-  type: 'type',
-}])
 
 interface Data {
   name: string
@@ -112,8 +89,10 @@ function groupConfigToData(config: GroupConfig): Data[] {
     .concat(config.domainGroup?.map(group => groupToData(GroupEnum.DomainGroup, group))) ?? []
 }
 
+const data = ref([] as Data[])
+
 if (config.value?.group) {
-  console.log(groupConfigToData(config.value.group))
+  data.value = groupConfigToData(config.value.group)
 }
 </script>
 

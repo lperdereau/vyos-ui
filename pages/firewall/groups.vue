@@ -3,12 +3,37 @@
     <h1 class="page-title">
       Firewall groups
     </h1>
-    <DataTable :value="data" sort-mode="multiple" striped-rows size="large" table-style="witdh: 100%"
-      :resizable-columns="true" table-class="datatable">
-      <Column field="name" header="Name" style="width: 25%" />
-      <Column field="group" header="Group" sortable style="width: 25%" />
-      <Column field="type" header="Type" sortable style="width: 25%" />
-      <Column field="description" header="Description" style="width: 25%" />
+    <DataTable
+      :value="data"
+      sort-mode="multiple"
+      striped-rows
+      size="large"
+      table-style="witdh: 100%"
+      :resizable-columns="true"
+      table-class="datatable"
+    >
+      <Column
+        field="name"
+        header="Name"
+        style="width: 25%"
+      />
+      <Column
+        field="group"
+        header="Group"
+        sortable
+        style="width: 25%"
+      />
+      <Column
+        field="type"
+        header="Type"
+        sortable
+        style="width: 25%"
+      />
+      <Column
+        field="description"
+        header="Description"
+        style="width: 25%"
+      />
     </DataTable>
   </div>
 </template>
@@ -47,7 +72,9 @@ const GroupEnum = {
   DomainGroup: 'domain',
 }
 
-function groupListing(group: AddressGroup | IPv6AddressGroup | NetworkGroup | IPv6NetworkGroup | InterfaceGroup | MacGroup | PortGroup | DomainGroup, type: string): string[] {
+type Group = AddressGroup | IPv6AddressGroup | NetworkGroup | IPv6NetworkGroup | InterfaceGroup | MacGroup | PortGroup | DomainGroup
+
+function groupListing(group: Group, type: string): string[] {
   switch (type) {
     case GroupEnum.AddressGroup:
       return (group as AddressGroup).addresses
@@ -69,7 +96,7 @@ function groupListing(group: AddressGroup | IPv6AddressGroup | NetworkGroup | IP
   return []
 }
 
-function groupToData(type: string, group: AddressGroup | IPv6AddressGroup | NetworkGroup | IPv6NetworkGroup | InterfaceGroup | MacGroup | PortGroup | DomainGroup): Data {
+function groupToData(type: string, group: Group): Data {
   return {
     name: group.name,
     description: group.description,

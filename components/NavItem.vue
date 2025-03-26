@@ -3,7 +3,10 @@
     :class="['item', { selected: $route.path === props.to }]"
     @click="handler"
   >
-    <v-icon :name="icon" />
+    <v-icon
+      v-if="icon"
+      :name="icon"
+    />
     <span class="title">{{ title }}</span>
   </div>
 </template>
@@ -11,7 +14,7 @@
 <script setup lang="ts">
 interface Props {
   to: string
-  icon: string
+  icon: string | null
   title: string
 }
 

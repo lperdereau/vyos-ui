@@ -6,6 +6,7 @@ import { computeHardware } from '#shared/types/hardware'
 import dashboardJson from '~/gateways/graphql/dashboard.sample.json'
 import firewallJson from '~/gateways/graphql/firewall.sample.json'
 import logsJson from '~/gateways/graphql/logs.sample.json'
+import { parseFirewallConfig, type FirewallConfig } from '#shared/types/firewall'
 import { computeRoutes, type Route } from '#shared/types/routes'
 import routesJson from '~/gateways/graphql/routes.sample.json'
 import type { Layout } from '#shared/types/layout'
@@ -37,5 +38,13 @@ export class InMemoryVyOs implements VyOsAdapter {
 
   async getConfig(): Promise<Config | null> {
     return parseConfig(firewallJson.data.ShowConfig.data.result)
+  }
+
+  async getFirewall(): Promise<FirewallConfig | null> {
+    const config = await this.getConfig()
+    if (config) {
+      return parseFirewallConfig(config)
+    }
+    return null
   }
 }

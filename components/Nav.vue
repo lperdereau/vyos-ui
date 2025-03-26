@@ -16,10 +16,15 @@
         title="Alerts"
         icon="pr-bell"
       />
-      <NavItem
+      <NavFolder
         title="Firewall"
         to="/firewall"
         icon="oi-shield-check"
+        :items="[
+          { to: '/groups', title: 'Group' },
+          { to: '/zones', title: 'Zones' },
+          { to: '/rules', title: 'Rules' },
+        ]"
       />
       <NavItem
         title="VPN"

@@ -5,6 +5,8 @@ import type { Hardware } from '#shared/types/hardware'
 import { computeHardware } from '#shared/types/hardware'
 import { dashboard } from '~/gateways/graphql/dashboard'
 
+import type { FirewallConfig } from '#shared/types/firewall'
+
 import type { Layout } from '#shared/types/layout'
 import { layout } from '~/gateways/graphql/layout'
 
@@ -51,6 +53,10 @@ export class GraphQLVyOs implements VyOsAdapter {
   }
 
   async getConfig(): Promise<Config | null> {
+    return null
+  }
+
+  async getFirewall(): Promise<FirewallConfig | null> {
     return null
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="page-title">
-      Firewall
+      Firewall rules
     </h1>
     <pre>
       {{ config }}
@@ -12,7 +12,7 @@
 <script setup lang="ts">
 import { useDependencies } from '~/composables/useDependencies'
 
-const config = ref(await useDependencies().vyOsAdapter.getConfig())
+const config = ref(await useDependencies().vyOsAdapter.getFirewall())
 </script>
 
 <style>

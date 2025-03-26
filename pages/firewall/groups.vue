@@ -42,6 +42,7 @@
 import { useDependencies } from '~/composables/useDependencies'
 import type {
   GroupConfig,
+  FirewallGroups,
   AddressGroup,
   IPv6AddressGroup,
   NetworkGroup,
@@ -72,9 +73,7 @@ const GroupEnum = {
   DomainGroup: 'domain',
 }
 
-type Group = AddressGroup | IPv6AddressGroup | NetworkGroup | IPv6NetworkGroup | InterfaceGroup | MacGroup | PortGroup | DomainGroup
-
-function groupListing(group: Group, type: string): string[] {
+function groupListing(group: FirewallGroups, type: string): string[] {
   switch (type) {
     case GroupEnum.AddressGroup:
       return (group as AddressGroup).addresses
@@ -96,7 +95,7 @@ function groupListing(group: Group, type: string): string[] {
   return []
 }
 
-function groupToData(type: string, group: Group): Data {
+function groupToData(type: string, group: FirewallGroups): Data {
   return {
     name: group.name,
     description: group.description,

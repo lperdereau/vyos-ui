@@ -98,6 +98,16 @@ interface FirewallGroup {
   description: string
 }
 
+export type FirewallGroups =
+  | AddressGroup
+  | IPv6AddressGroup
+  | NetworkGroup
+  | IPv6NetworkGroup
+  | InterfaceGroup
+  | MacGroup
+  | PortGroup
+  | DomainGroup
+
 // Define the address group configuration structure
 export interface AddressGroup extends FirewallGroup {
   addresses: IPv4[]

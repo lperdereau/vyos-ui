@@ -42,7 +42,7 @@
 import { useDependencies } from '~/composables/useDependencies'
 import type {
   GroupConfig,
-  FirewallGroups,
+  FirewallGroup,
   AddressGroup,
   IPv6AddressGroup,
   NetworkGroup,
@@ -73,7 +73,7 @@ const GroupEnum = {
   DomainGroup: 'domain',
 }
 
-function groupListing(group: FirewallGroups, type: string): string[] {
+function groupListing(group: FirewallGroup, type: string): string[] {
   switch (type) {
     case GroupEnum.AddressGroup:
       return (group as AddressGroup).addresses
@@ -95,7 +95,7 @@ function groupListing(group: FirewallGroups, type: string): string[] {
   return []
 }
 
-function groupToData(type: string, group: FirewallGroups): Data {
+function groupToData(type: string, group: FirewallGroup): Data {
   return {
     name: group.name,
     description: group.description,
@@ -106,13 +106,13 @@ function groupToData(type: string, group: FirewallGroups): Data {
 
 function groupConfigToData(config: GroupConfig): Data[] {
   return config.addressGroup?.map(group => groupToData(GroupEnum.AddressGroup, group))
-    .concat(config.ipv6AddressGroup?.map(group => groupToData(GroupEnum.IPv6AddressGroup, group)))
-    .concat(config.networkGroup?.map(group => groupToData(GroupEnum.NetworkGroup, group)))
-    .concat(config.ipv6NetworkGroup?.map(group => groupToData(GroupEnum.IPv6NetworkGroup, group)))
-    .concat(config.interfaceGroup?.map(group => groupToData(GroupEnum.InterfaceGroup, group)))
-    .concat(config.macGroup?.map(group => groupToData(GroupEnum.MacGroup, group)))
-    .concat(config.portGroup?.map(group => groupToData(GroupEnum.PortGroup, group)))
-    .concat(config.domainGroup?.map(group => groupToData(GroupEnum.DomainGroup, group))) ?? []
+    .concat(config.ipv6AddressGroup?.map(group => groupToData(GroupEnum.IPv6AddressGroup, group)) ?? [])
+    .concat(config.networkGroup?.map(group => groupToData(GroupEnum.NetworkGroup, group)) ?? [])
+    .concat(config.ipv6NetworkGroup?.map(group => groupToData(GroupEnum.IPv6NetworkGroup, group)) ?? [])
+    .concat(config.interfaceGroup?.map(group => groupToData(GroupEnum.InterfaceGroup, group)) ?? [])
+    .concat(config.macGroup?.map(group => groupToData(GroupEnum.MacGroup, group)) ?? [])
+    .concat(config.portGroup?.map(group => groupToData(GroupEnum.PortGroup, group)) ?? [])
+    .concat(config.domainGroup?.map(group => groupToData(GroupEnum.DomainGroup, group)) ?? []) ?? []
 }
 
 const data = ref([] as Data[])

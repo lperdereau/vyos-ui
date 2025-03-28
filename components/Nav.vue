@@ -27,14 +27,17 @@
         ]"
       />
       <NavItem
+        to="/vpn"
         title="VPN"
         icon="oi-shield-lock"
       />
       <NavItem
+        to="/routing"
         title="Routing"
         icon="ri-route-line"
       />
       <NavItem
+        to="/service"
         title="Service"
         icon="fa-network-wired"
       />

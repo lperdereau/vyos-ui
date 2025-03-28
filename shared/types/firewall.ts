@@ -1,13 +1,21 @@
 import type { Config as VyOSConfig, Section as VyOSSection } from '@lperdereau/vyos-parser'
+import Default from '~/layouts/default.vue'
 
 // Define the basic types for IPv4 and IPv6
 type IPv4 = string
 type IPv6 = string
 
-// Define the basic types for rules
-interface Rule {
-  action: string
+interface Name {
+  name: string
+}
+
+interface Description {
   description?: string
+}
+
+// Define the basic types for rules
+interface Rule extends Description {
+  action: string
   // Add other rule-specific properties as needed
 }
 
@@ -61,6 +69,7 @@ interface IPv4Config {
   input?: FilterConfig
   output?: OutputConfig
   prerouting?: PreroutingConfig
+  defaultAction?: string
   name?: string
 }
 
@@ -93,12 +102,7 @@ interface PreroutingConfig extends FilterConfig {
   raw?: Rule[]
 }
 
-interface FirewallGroup {
-  name: string
-  description: string
-}
-
-export type FirewallGroups =
+export type FirewallGroup =
   | AddressGroup
   | IPv6AddressGroup
   | NetworkGroup
@@ -109,42 +113,42 @@ export type FirewallGroups =
   | DomainGroup
 
 // Define the address group configuration structure
-export interface AddressGroup extends FirewallGroup {
+export interface AddressGroup extends Name, Description {
   addresses: IPv4[]
 }
 
 // Define the IPv6 address group configuration structure
-export interface IPv6AddressGroup extends FirewallGroup {
+export interface IPv6AddressGroup extends Name, Description {
   addresses: IPv6[]
 }
 
 // Define the network group configuration structure
-export interface NetworkGroup extends FirewallGroup {
+export interface NetworkGroup extends Name, Description {
   networks: IPv4[]
 }
 
 // Define the IPv6 network group configuration structure
-export interface IPv6NetworkGroup extends FirewallGroup {
+export interface IPv6NetworkGroup extends Name, Description {
   networks: IPv6[]
 }
 
 // Define the interface group configuration structure
-export interface InterfaceGroup extends FirewallGroup {
+export interface InterfaceGroup extends Name, Description {
   interfaces: string[]
 }
 
 // Define the MAC group configuration structure
-export interface MacGroup extends FirewallGroup {
+export interface MacGroup extends Name, Description {
   macAddresses: string[]
 }
 
 // Define the port group configuration structure
-export interface PortGroup extends FirewallGroup {
+export interface PortGroup extends Name, Description {
   ports: string[]
 }
 
 // Define the domain group configuration structure
-export interface DomainGroup extends FirewallGroup {
+export interface DomainGroup extends Name, Description {
   domains: string[]
 }
 
@@ -164,15 +168,19 @@ function parseGroupConfig(group: VyOSSection): GroupConfig {
     if (key.startsWith('address-group')) {
       groupConfig.addressGroup?.push({
         name: key.split(' ')[1],
-        description: group[key].description ? group[key].description : '',
-        addresses: [group[key].address] ? [group[key].address] : [],
+        description: typeof group[key] === 'object' && 'description' in group[key] ? group[key].description as string ?? '' : '',
+        addresses: typeof group[key] === 'object' && 'address' in group[key] && typeof group[key].address === 'string'
+          ? [group[key].address]
+          : [],
       })
     }
     else if (key.startsWith('network-group')) {
       groupConfig.networkGroup?.push({
         name: key.split(' ')[1],
-        description: group[key].description ?? '',
-        networks: [group[key].network] ? [group[key].network] : [],
+        description: typeof group[key] === 'object' && 'description' in group[key] ? group[key].description as string ?? '' : '',
+        networks: typeof group[key] === 'object' && 'network' in group[key] && typeof group[key].network === 'string'
+          ? [group[key].network]
+          : [],
       })
     }
   }
@@ -184,38 +192,12 @@ function parseIPv4Config(ipv4: VyOSSection): IPv4Config {
   const ipv4Config: IPv4Config = {}
 
   for (const key in ipv4) {
-    if (key.startsWith('name')) {
-      ipv4Config[key.split(' ')[1]] = {
-        defaultAction: ipv4[key]['default-action'],
-      }
-    }
+    const section = ipv4[key] as VyOSSection
+    ipv4Config.name = key.split(' ')[1]
+    ipv4Config.defaultAction = (section['default-action'] as string) ?? 'accept'
   }
 
   return ipv4Config
-}
-
-function parseZoneConfig(zone: VyOSSection): ZoneConfig {
-  const zoneConfig: ZoneConfig = {}
-
-  for (const key in zone) {
-    zoneConfig[key] = {
-      defaultAction: zone[key]['default-action'],
-      from: {},
-      member: zone[key]['member'],
-      localZone: zone[key]['local-zone'],
-    }
-    if (zone[key]['from']) {
-      for (const fromKey in zone[key]['from']) {
-        zoneConfig[key].from[fromKey] = {
-          firewall: {
-            name: zone[key]['from'][fromKey].firewall.name,
-          },
-        }
-      }
-    }
-  }
-
-  return zoneConfig
 }
 
 export function parseFirewallConfig(config: VyOSConfig): FirewallConfig {
@@ -227,10 +209,6 @@ export function parseFirewallConfig(config: VyOSConfig): FirewallConfig {
 
   if (config.ipv4) {
     firewallConfig.ipv4 = parseIPv4Config(config.ipv4)
-  }
-
-  if (config.zone) {
-    firewallConfig.zone = parseZoneConfig(config.zone)
   }
 
   return firewallConfig

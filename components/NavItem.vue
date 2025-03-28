@@ -14,7 +14,7 @@
 <script setup lang="ts">
 interface Props {
   to: string
-  icon: string | null
+  icon?: string
   title: string
 }
 

@@ -1,5 +1,4 @@
 import type { Config as VyOSConfig, Section as VyOSSection } from '@lperdereau/vyos-parser'
-import Default from '~/layouts/default.vue'
 
 // Define the basic types for IPv4 and IPv6
 type IPv4 = string
@@ -13,35 +12,10 @@ interface Description {
   description?: string
 }
 
-// Define the basic types for rules
-interface Rule extends Description {
-  action: string
-  // Add other rule-specific properties as needed
-}
-
 // Define the firewall configuration structure
 export interface FirewallConfig {
-  bridge?: BridgeConfig
-  flowtable?: FlowTableConfig
   globalOptions?: GlobalOptions
   group?: GroupConfig
-  ipv4?: IPv4Config
-  ipv6?: IPv6Config
-  zone?: ZoneConfig
-}
-
-// Define the bridge configuration structure
-interface BridgeConfig {
-  forward?: FilterConfig
-  input?: FilterConfig
-  output?: FilterConfig
-  prerouting?: FilterConfig
-  name?: string
-}
-
-// Define the flow table configuration structure
-interface FlowTableConfig {
-  [key: string]: any // Custom flow table configurations
 }
 
 // Define the global options configuration structure
@@ -61,45 +35,6 @@ export interface GroupConfig {
   macGroup?: MacGroup[]
   portGroup?: PortGroup[]
   domainGroup?: DomainGroup[]
-}
-
-// Define the IPv4 configuration structure
-interface IPv4Config {
-  forward?: FilterConfig
-  input?: FilterConfig
-  output?: OutputConfig
-  prerouting?: PreroutingConfig
-  defaultAction?: string
-  name?: string
-}
-
-// Define the IPv6 configuration structure
-interface IPv6Config {
-  forward?: FilterConfig
-  input?: FilterConfig
-  output?: OutputConfig
-  prerouting?: PreroutingConfig
-  ipv6Name?: string
-}
-
-// Define the zone configuration structure
-interface ZoneConfig {
-  [key: string]: any // Custom zone configurations
-}
-
-// Define the filter configuration structure
-interface FilterConfig {
-  filter?: Rule[]
-}
-
-// Define the output configuration structure
-interface OutputConfig extends FilterConfig {
-  raw?: Rule[]
-}
-
-// Define the prerouting configuration structure
-interface PreroutingConfig extends FilterConfig {
-  raw?: Rule[]
 }
 
 export type FirewallGroup =
@@ -188,27 +123,11 @@ function parseGroupConfig(group: VyOSSection): GroupConfig {
   return groupConfig
 }
 
-function parseIPv4Config(ipv4: VyOSSection): IPv4Config {
-  const ipv4Config: IPv4Config = {}
-
-  for (const key in ipv4) {
-    const section = ipv4[key] as VyOSSection
-    ipv4Config.name = key.split(' ')[1]
-    ipv4Config.defaultAction = (section['default-action'] as string) ?? 'accept'
-  }
-
-  return ipv4Config
-}
-
 export function parseFirewallConfig(config: VyOSConfig): FirewallConfig {
   const firewallConfig: FirewallConfig = {}
 
   if (config.group) {
     firewallConfig.group = parseGroupConfig(config.group)
-  }
-
-  if (config.ipv4) {
-    firewallConfig.ipv4 = parseIPv4Config(config.ipv4)
   }
 
   return firewallConfig

@@ -46,25 +46,16 @@ watchEffect(() => {
   display: flex;
   flex-direction: column;
   color: #676d7c;
+  background-color: #2020270D;
   border-radius: 6px;
   padding: 10px;
 
   cursor: pointer;
 }
 
-.folder:hover {
-  background-color: #fff;
-  color: #000;
-}
-
 .item {
   display: flex;
   flex-direction: row;
-}
-
-.selected {
-  background-color: #fff;
-  color: #000;
 }
 
 .nav-items {
@@ -85,7 +76,8 @@ watchEffect(() => {
 
 .title {
   padding-left: 5px;
-  font-weight: 600;
+  font-family: "Archivo";
+  font-weight: 500;
   font-zize: 16px;
 }
 </style>

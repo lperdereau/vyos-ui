@@ -11,6 +11,7 @@ import {
   BiGearFill,
   HiSolidChevronDown,
   HiSolidChevronUp,
+  HiSearch,
 } from 'oh-vue-icons/icons'
 
 export default defineNuxtPlugin((app) => {
@@ -26,6 +27,7 @@ export default defineNuxtPlugin((app) => {
     BiGearFill,
     HiSolidChevronDown,
     HiSolidChevronUp,
+    HiSearch,
   )
 
   app.vueApp.component('v-icon', OhVueIcon)

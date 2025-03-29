@@ -60,6 +60,11 @@
         title="System"
         icon="bi-gear-fill"
       />
+      <NavItem
+        to="/404"
+        title="404"
+        icon="hi-search"
+      />
     </div>
   </div>
 </template>

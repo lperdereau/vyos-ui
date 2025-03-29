@@ -1,0 +1,270 @@
+{
+    "data": {
+        "ShowInterfaces": {
+            "success": true,
+            "errors": null,
+            "data": {
+                "result": [
+                    {
+                        "ifindex": 6,
+                        "ifname": "bond0",
+                        "flags": [
+                            "BROADCAST",
+                            "MULTICAST",
+                            "MASTER"
+                        ],
+                        "mtu": 1600,
+                        "qdisc": "noop",
+                        "operstate": "DOWN",
+                        "group": "default",
+                        "txqlen": 1000,
+                        "link_type": "ether",
+                        "address": "00:53:01:02:03:04",
+                        "broadcast": "ff:ff:ff:ff:ff:ff",
+                        "addr_info": [
+                            {
+                                "family": "inet6",
+                                "local": "fe80::253:1ff:fe02:304",
+                                "prefixlen": 64,
+                                "scope": "link",
+                                "tentative": true,
+                                "valid_life_time": 4294967295,
+                                "preferred_life_time": 4294967295
+                            }
+                        ],
+                        "counters_last_clear": 0,
+                        "description": "This is an awesome interface running on VyOS",
+                        "stats": {
+                            "rx_bytes": 7364360,
+                            "rx_packets": 34742,
+                            "rx_errors": 0,
+                            "rx_dropped": 5,
+                            "rx_over_errors": 0,
+                            "multicast": 0,
+                            "tx_bytes": 260,
+                            "tx_packets": 2,
+                            "tx_errors": 0,
+                            "tx_dropped": 0,
+                            "tx_carrier_errors": 0,
+                            "collisions": 0
+                        }
+                    },
+                    {
+                        "ifindex": 2,
+                        "ifname": "eth0",
+                        "flags": [
+                            "BROADCAST",
+                            "MULTICAST",
+                            "UP",
+                            "LOWER_UP"
+                        ],
+                        "mtu": 1500,
+                        "qdisc": "mq",
+                        "operstate": "UP",
+                        "group": "default",
+                        "txqlen": 1000,
+                        "link_type": "ether",
+                        "address": "bc:24:11:82:a3:e4",
+                        "broadcast": "ff:ff:ff:ff:ff:ff",
+                        "altnames": [
+                            "enp6s18",
+                            "ens18"
+                        ],
+                        "addr_info": [
+                            {
+                                "family": "inet",
+                                "local": "10.14.99.190",
+                                "prefixlen": 24,
+                                "broadcast": "10.14.99.255",
+                                "scope": "global",
+                                "dynamic": true,
+                                "label": "eth0",
+                                "valid_life_time": 43093,
+                                "preferred_life_time": 43093
+                            },
+                            {
+                                "family": "inet6",
+                                "local": "fe80::be24:11ff:fe82:a3e4",
+                                "prefixlen": 64,
+                                "scope": "link",
+                                "valid_life_time": 4294967295,
+                                "preferred_life_time": 4294967295
+                            }
+                        ],
+                        "counters_last_clear": 0,
+                        "description": "",
+                        "stats": {
+                            "rx_bytes": 71226,
+                            "rx_packets": 806,
+                            "rx_errors": 0,
+                            "rx_dropped": 2,
+                            "rx_over_errors": 0,
+                            "multicast": 0,
+                            "tx_bytes": 43040,
+                            "tx_packets": 278,
+                            "tx_errors": 0,
+                            "tx_dropped": 0,
+                            "tx_carrier_errors": 0,
+                            "collisions": 0
+                        }
+                    },
+                    {
+                        "ifindex": 3,
+                        "ifname": "eth1",
+                        "flags": [
+                            "BROADCAST",
+                            "MULTICAST",
+                            "SLAVE",
+                            "UP",
+                            "LOWER_UP"
+                        ],
+                        "mtu": 1600,
+                        "qdisc": "fq_codel",
+                        "master": "bond0",
+                        "operstate": "UP",
+                        "group": "default",
+                        "txqlen": 1000,
+                        "link_type": "ether",
+                        "address": "00:53:01:02:03:04",
+                        "broadcast": "ff:ff:ff:ff:ff:ff",
+                        "permaddr": "bc:24:11:3b:46:93",
+                        "altnames": [
+                            "enp6s19",
+                            "ens19"
+                        ],
+                        "addr_info": [
+                            {
+                                "family": "inet6",
+                                "local": "fe80::253:1ff:fe02:304",
+                                "prefixlen": 64,
+                                "scope": "link",
+                                "tentative": true,
+                                "valid_life_time": 4294967295,
+                                "preferred_life_time": 4294967295
+                            }
+                        ],
+                        "counters_last_clear": 0,
+                        "description": "",
+                        "stats": {
+                            "rx_bytes": 7070409,
+                            "rx_packets": 30359,
+                            "rx_errors": 0,
+                            "rx_dropped": 99,
+                            "rx_over_errors": 0,
+                            "multicast": 0,
+                            "tx_bytes": 1320,
+                            "tx_packets": 11,
+                            "tx_errors": 0,
+                            "tx_dropped": 0,
+                            "tx_carrier_errors": 0,
+                            "collisions": 0
+                        }
+                    },
+                    {
+                        "ifindex": 4,
+                        "ifname": "eth2",
+                        "flags": [
+                            "BROADCAST",
+                            "MULTICAST",
+                            "SLAVE",
+                            "UP",
+                            "LOWER_UP"
+                        ],
+                        "mtu": 1600,
+                        "qdisc": "fq_codel",
+                        "master": "bond0",
+                        "operstate": "UP",
+                        "group": "default",
+                        "txqlen": 1000,
+                        "link_type": "ether",
+                        "address": "00:53:01:02:03:04",
+                        "broadcast": "ff:ff:ff:ff:ff:ff",
+                        "permaddr": "bc:24:11:8f:ba:8c",
+                        "altnames": [
+                            "enp6s20",
+                            "ens20"
+                        ],
+                        "addr_info": [],
+                        "counters_last_clear": 0,
+                        "description": "",
+                        "stats": {
+                            "rx_bytes": 7060568,
+                            "rx_packets": 30214,
+                            "rx_errors": 0,
+                            "rx_dropped": 1831,
+                            "rx_over_errors": 0,
+                            "multicast": 0,
+                            "tx_bytes": 826,
+                            "tx_packets": 7,
+                            "tx_errors": 0,
+                            "tx_dropped": 0,
+                            "tx_carrier_errors": 0,
+                            "collisions": 0
+                        }
+                    },
+                    {
+                        "ifindex": 1,
+                        "ifname": "lo",
+                        "flags": [
+                            "LOOPBACK",
+                            "UP",
+                            "LOWER_UP"
+                        ],
+                        "mtu": 65536,
+                        "qdisc": "noqueue",
+                        "operstate": "UNKNOWN",
+                        "group": "default",
+                        "txqlen": 1000,
+                        "link_type": "loopback",
+                        "address": "00:00:00:00:00:00",
+                        "broadcast": "00:00:00:00:00:00",
+                        "addr_info": [
+                            {
+                                "family": "inet",
+                                "local": "127.0.0.1",
+                                "prefixlen": 8,
+                                "scope": "host",
+                                "label": "lo",
+                                "valid_life_time": 4294967295,
+                                "preferred_life_time": 4294967295
+                            },
+                            {
+                                "family": "inet6",
+                                "local": "fe80::200:ff:fe00:0",
+                                "prefixlen": 64,
+                                "scope": "link",
+                                "valid_life_time": 4294967295,
+                                "preferred_life_time": 4294967295
+                            },
+                            {
+                                "family": "inet6",
+                                "local": "::1",
+                                "prefixlen": 128,
+                                "scope": "host",
+                                "noprefixroute": true,
+                                "valid_life_time": 4294967295,
+                                "preferred_life_time": 4294967295
+                            }
+                        ],
+                        "counters_last_clear": 0,
+                        "description": "",
+                        "stats": {
+                            "rx_bytes": 1120,
+                            "rx_packets": 14,
+                            "rx_errors": 0,
+                            "rx_dropped": 0,
+                            "rx_over_errors": 0,
+                            "multicast": 0,
+                            "tx_bytes": 1120,
+                            "tx_packets": 14,
+                            "tx_errors": 0,
+                            "tx_dropped": 0,
+                            "tx_carrier_errors": 0,
+                            "collisions": 0
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

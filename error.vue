@@ -44,6 +44,10 @@ defineProps({
 })
 
 const handleError = () => clearError({ redirect: '/' })
+
+onBeforeMount(() => {
+  console.error('Error:', error)
+})
 </script>
 
 <style scoped>

@@ -16,17 +16,33 @@
         title="Alerts"
         icon="pr-bell"
       />
-      <NavItem
+      <NavFolder
+        title="Firewall"
+        to="/firewall"
+        icon="oi-shield-check"
+        :items="[
+          { to: '/groups', title: 'Group' },
+          { to: '/zones', title: 'Zones' },
+          { to: '/rules', title: 'Rules' },
+        ]"
+      />
+      <NavFolder
         title="VPN"
-        icon="bi-shield-lock"
+        to="/vpn"
+        icon="oi-shield-lock"
+        :items="[]"
       />
-      <NavItem
+      <NavFolder
         title="Routing"
+        to="/routing"
         icon="ri-route-line"
+        :items="[]"
       />
-      <NavItem
-        title="Service"
+      <NavFolder
+        title="Services"
+        to="/services"
         icon="fa-network-wired"
+        :items="[]"
       />
       <NavItem
         to="/nic"
@@ -43,6 +59,11 @@
         to="/system"
         title="System"
         icon="bi-gear-fill"
+      />
+      <NavItem
+        to="/404"
+        title="404"
+        icon="hi-search"
       />
     </div>
   </div>

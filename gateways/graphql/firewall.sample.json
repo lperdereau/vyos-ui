@@ -1,0 +1,11 @@
+{
+    "data": {
+        "ShowConfig": {
+            "success": true,
+            "errors": null,
+            "data": {
+                "result": " group {\n     domain-group GAFA {\n         domain google.com\n         domain facebook.com\n         domain amazon.com\n         domain apple.com\n         description \"GAFA domains\"\n     }\n     mac-group SPECIFIC_MAC {\n         mac-address 5E:FF:56:A2:AF:15\n         description \"Specific mac address\"\n     }\n     interface-group PUBLIC_ETH {\n         interface eth0\n         interface eth1\n         description \"Public Bound\"\n     }\n     address-group IP_V4 {\n         address 78.41.204.36-78.41.204.37\n         address 1.1.1.1\n         description \"IPv4 addresses\"\n     }\n     ipv6-address-group IP_V6 {\n         address 2001:db8::1\n         description \"IPv6 Address\"\n     }\n     network-group NETWORK {\n         description \"Private Network\"\n         network 192.168.0.1/24\n     }\n     ipv6-network-group NETWORK_V6 {\n         description \"Documentation Network IPv6\"\n         network 2001:0DB8::/32\n     }\n }\n ipv4 {\n     name ALLOW_ALL {\n         default-action accept\n     }\n     name DENY_ALL {\n         default-action drop\n     }\n }\n zone LAN {\n     default-action drop\n     from LOCAL {\n         firewall {\n             name ALLOW_ALL\n         }\n     }\n     member {\n         interface eth1\n     }\n }\n zone LOCAL {\n     from WAN {\n         firewall {\n             name ALLOW_ALL\n         }\n     }\n     local-zone\n }\n zone WAN {\n     from LOCAL {\n         firewall {\n             name ALLOW_ALL\n         }\n     }\n     member {\n         interface eth0\n     }\n }\n"
+            }
+        }
+    }
+}

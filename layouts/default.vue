@@ -1,7 +1,7 @@
 <template>
   <div class="view">
     <div class="nav">
-      <Nav
+      <NavBar
         :name="name"
         :version="version"
       />

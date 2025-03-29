@@ -4,7 +4,17 @@
       Firewall groups
     </h1>
     <div class="filter-container">
-      <div class="search-filter" />
+      <div class="search-filter">
+        <p class="filter-label">
+          Search
+        </p>
+        <InputText
+          v-model="search"
+          type="text"
+          placeholder="Type something here..."
+          class="w-full inputtext"
+        />
+      </div>
       <div class="select-filter">
         <p class="filter-label">
           Groups:
@@ -54,6 +64,8 @@ import { GroupEnum, type Group } from '~/shared/types/firewall'
 
 const config = ref(await useDependencies().vyOsAdapter.getFirewall())
 
+const search = ref(null)
+
 const pills = ref([
   {
     name: 'IPv4',
@@ -97,8 +109,7 @@ const pills = ref([
   },
 ])
 
-const filteredGroups = computed<Group[]>(() => {
-  // if no selected pills, return groups
+const selectedGroups = computed<Group[]>(() => {
   if (pills.value.every((pill: any[]) => !pill.selected)) return config.value?.group
   return config.value?.group.filter((group: Group) => {
     return pills.value.some((pill: any[]) => {
@@ -106,30 +117,28 @@ const filteredGroups = computed<Group[]>(() => {
     })
   })
 })
+
+const filteredGroups = computed<Group[]>(() => {
+  return selectedGroups.value.filter((group: Group) => {
+    if (!search.value) return true
+    const searchLower = search.value.toLowerCase()
+    return (
+      group.name.toLowerCase().includes(searchLower)
+      || group.content.toString().toLowerCase().includes(searchLower)
+      || group.type.toLowerCase().includes(searchLower)
+      || group.description.toLowerCase().includes(searchLower)
+    )
+  })
+})
 </script>
 
 <style>
-.datatable-container {
-  margin-top: 20px;
-}
-.datatable {
-  --p-datatable-header-cell-padding: 10px 0;
-  --p-datatable-header-cell-color: #676D7C;
-  --p-datatable-header-cell-hover-color: #676D7C;
-  --p-datatable-header-cell-selected-color: #676D7C;
-  --p-datatable-column-title-font-weight: 500;
-  --p-datatable-header-cell-gap: 0.5rem;
-
-  --p-datatable-row-striped-background: #F6F8FA;
-  --p-datatable-body-cell-border-color: #FFF;
-  --p-datatable-body-cell-padding: 10px 0;
-}
-
 .filter-container {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 50px;
+  align-items: flex-end;
 }
 
 .select-filter {
@@ -141,6 +150,40 @@ const filteredGroups = computed<Group[]>(() => {
 .filter-label {
   font-size: 14px;
   color: #676D7C;
+}
+
+.filter-label {
+  color: #676D7C;
+  font-weight: 500;
+  font-size: 14px;
+  padding-bottom: 4px;
+}
+
+.inputtext {
+  --p-inputtext-border-color: #D5E0E7;
+  --p-inputtext-padding-x: 15px;
+  --p-inputtext-padding-y: 5px;
+  --p-inputtext-color: #A3AEB3;
+  --p-inputtext-border-radius: 4px;
+  width: 300px;
+}
+
+.datatable-container {
+  margin-top: 20px;
+}
+
+.datatable {
+  --p-datatable-header-cell-padding: 10px 0;
+  --p-datatable-header-cell-color: #676D7C;
+  --p-datatable-header-cell-hover-color: #676D7C;
+  --p-datatable-header-cell-selected-color: #676D7C;
+  --p-datatable-column-title-font-weight: 500;
+  --p-datatable-header-cell-gap: 0.5rem;
+  --p-datatable-header-cell-border-color: #FFF;
+
+  --p-datatable-row-striped-background: #F6F8FA;
+  --p-datatable-body-cell-border-color: #FFF;
+  --p-datatable-body-cell-padding: 10px 0;
 }
 
 .page-title {

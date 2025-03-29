@@ -33,6 +33,16 @@ container {
 }
 ```
 
+## Setup with external docker engine
+```shell
+docker run -d \
+    --name vyos-ui \
+    --network host \
+    -e NODE_TLS_REJECT_UNAUTHORIZED=0 \
+    -e ENDPOINT=https://<vyos-ip>/graphql \
+    ghcr.io/lperdereau/vyos-ui:<version>
+```
+
 ## Local Setup
 
 Make sure to install dependencies:

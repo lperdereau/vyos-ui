@@ -9,12 +9,12 @@
         <p class="filter-label">
           Groups:
         </p>
-        <SelectPills :pills="pills" />
+        <SelectPills v-model:pills="pills" />
       </div>
     </div>
     <div class="datatable-container">
       <DataTable
-        :value="config?.group"
+        :value="filteredGroups"
         sort-mode="multiple"
         striped-rows
         table-style="witdh: 100%"
@@ -50,43 +50,62 @@
 
 <script setup lang="ts">
 import { useDependencies } from '~/composables/useDependencies'
+import { GroupEnum, type Group } from '~/shared/types/firewall'
 
 const config = ref(await useDependencies().vyOsAdapter.getFirewall())
 
 const pills = ref([
   {
     name: 'IPv4',
-    selected: true,
+    value: GroupEnum.AddressGroup,
+    selected: false,
   },
   {
     name: 'IPv6',
+    value: GroupEnum.IPv6AddressGroup,
     selected: false,
   },
   {
     name: 'NetworkV4',
+    value: GroupEnum.NetworkGroup,
     selected: false,
   },
   {
     name: 'NetworkV6',
+    value: GroupEnum.IPv6NetworkGroup,
     selected: false,
   },
   {
     name: 'Interface',
+    value: GroupEnum.InterfaceGroup,
     selected: false,
   },
   {
     name: 'Port',
+    value: GroupEnum.PortGroup,
     selected: false,
   },
   {
     name: 'MAC',
+    value: GroupEnum.MacGroup,
     selected: false,
   },
   {
     name: 'Domain',
+    value: GroupEnum.DomainGroup,
     selected: false,
   },
 ])
+
+const filteredGroups = computed<Group[]>(() => {
+  // if no selected pills, return groups
+  if (pills.value.every((pill: any[]) => !pill.selected)) return config.value?.group
+  return config.value?.group.filter((group: Group) => {
+    return pills.value.some((pill: any[]) => {
+      return group.type === pill.value && pill.selected
+    })
+  })
+})
 </script>
 
 <style>

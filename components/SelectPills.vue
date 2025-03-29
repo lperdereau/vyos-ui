@@ -4,7 +4,7 @@
       v-for="(pill, index) in pills"
       :key="index"
       :class="['pill', { selected: pill.selected }]"
-      @click="pill.selected = !pill.selected"
+      @click="handleClick(pill)"
     >
       <span>{{ pill.name }}</span>
     </div>
@@ -14,14 +14,17 @@
 <script setup lang="ts">
 type Pill = {
   name: string
+  value: object
   selected: boolean
 }
 
-type Props = {
-  pills: Pill[]
-}
+const pills = defineModel<Pill[]>('pills', { required: true })
+const emit = defineEmits(['update:pills'])
 
-defineProps<Props>()
+const handleClick = (pill: Pill) => {
+  pill.selected = !pill.selected
+  emit('update:pills', pills.value)
+}
 </script>
 
 <style scoped>

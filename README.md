@@ -13,9 +13,8 @@ This project is in early development and should not be used in production enviro
 
 ## Preview
 
-<img src="docs/dashboard.png" alt="Dashboard" width="100%" />
-<img src="docs/firewall.png" alt="Firewall" width="100%" />
-
+<img src="docs/dashboard.png" alt="Dashboard" width="49%" />
+<img src="docs/firewall.png" alt="Firewall" width="49%" />
 
 ## Setup Into VyOS
 ```

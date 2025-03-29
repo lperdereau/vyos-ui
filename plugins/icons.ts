@@ -9,6 +9,8 @@ import {
   BiEthernet,
   BiFileEarmarkText,
   BiGearFill,
+  HiSolidChevronDown,
+  HiSolidChevronUp,
 } from 'oh-vue-icons/icons'
 
 export default defineNuxtPlugin((app) => {
@@ -22,6 +24,8 @@ export default defineNuxtPlugin((app) => {
     BiEthernet,
     BiFileEarmarkText,
     BiGearFill,
+    HiSolidChevronDown,
+    HiSolidChevronUp,
   )
 
   app.vueApp.component('v-icon', OhVueIcon)

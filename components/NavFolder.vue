@@ -1,11 +1,17 @@
 <template>
   <div
-    :class="['folder', { selected: open }]"
+    :class="['folder', { 'folder-selected': open }]"
     @click="open = !open"
   >
     <div class="item">
-      <v-icon :name="icon" />
-      <span class="title">{{ title }}</span>
+      <div>
+        <v-icon :name="icon" />
+        <span class="title">{{ title }}</span>
+      </div>
+      <v-icon
+        :name="open ? 'hi-solid-chevron-up' : 'hi-solid-chevron-down'"
+        class="icon"
+      />
     </div>
     <div class="nav-items">
       <NavItem
@@ -46,30 +52,46 @@ watchEffect(() => {
   display: flex;
   flex-direction: column;
   color: #676d7c;
-  background-color: #2020270D;
   border-radius: 6px;
   padding: 10px;
 
   cursor: pointer;
 }
 
+.icon {
+  color: #FF9101;
+}
+
+.folder:hover:not(.folder-selected) {
+  background-color: #fff;
+  color: #000;
+}
+
 .item {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 
 .nav-items {
   display: flex;
   flex-direction: column;
   padding-left: 10px;
-  padding-top: 5px;
 }
 
 .nav-items > * {
   display: none;
 }
 
-.selected > .nav-items > * {
+.folder-selected {
+  background-color: #2020270D;
+}
+
+.folder-selected > .nav-items {
+  padding-top: 5px;
+}
+
+.folder-selected > .nav-items > * {
   display: block !important;
   overflow: hidden;
 }

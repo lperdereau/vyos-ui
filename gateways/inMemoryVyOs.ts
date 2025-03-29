@@ -18,7 +18,7 @@ export class InMemoryVyOs implements VyOsAdapter {
   }
 
   async getDashboard(): Promise<Hardware> {
-    return computeHardware(dashboardJson)
+    return computeHardware(dashboardJson.data)
   }
 
   async getLayout(): Promise<Layout> {

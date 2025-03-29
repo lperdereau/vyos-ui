@@ -26,20 +26,23 @@
           { to: '/rules', title: 'Rules' },
         ]"
       />
-      <NavItem
-        to="/vpn"
+      <NavFolder
         title="VPN"
+        to="/vpn"
         icon="oi-shield-lock"
+        :items="[]"
       />
-      <NavItem
-        to="/routing"
+      <NavFolder
         title="Routing"
+        to="/routing"
         icon="ri-route-line"
+        :items="[]"
       />
-      <NavItem
-        to="/service"
-        title="Service"
+      <NavFolder
+        title="Services"
+        to="/services"
         icon="fa-network-wired"
+        :items="[]"
       />
       <NavItem
         to="/nic"

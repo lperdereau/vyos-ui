@@ -24,17 +24,5 @@ defineProps<NodeProps>()
 </script>
 
 <style scoped>
-.card {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  justify-content: center;
-
-  width: 100px;
-  border: 1px solid #D5E0E7;
-  padding: 10px;
-  border-radius: 4px;
-  background-color: #fff;
-  box-shadow: 0px 1px 4px 0px #D5E0E7;
-}
+@import "./card.css";
 </style>

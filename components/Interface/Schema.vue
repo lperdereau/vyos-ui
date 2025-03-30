@@ -3,24 +3,18 @@
   <VueFlow
     :nodes="nodes"
     :edges="edges"
+    :node-types="nodeTypes"
     style="border: 1px solid #D5E0E7; border-radius: 8px;"
+    @node-click="onNodeClick"
   >
     <Background
       bg-color="#F3F5F880"
       variant="dots"
       color="#676d7c"
-      size="1.5"
+      :size="1.5"
     />
-    <template #node-ethernet="nodeProps">
-      <InterfaceCardEthernet v-bind="nodeProps" />
-    </template>
-
-    <template #node-bond="nodeProps">
-      <InterfaceCardBond v-bind="nodeProps" />
-    </template>
-
-    <template #node-bridge="nodeProps">
-      <InterfaceCardBridge v-bind="nodeProps" />
+    <template #edge-interface="customEdgeProps">
+      <InterfaceEdge v-bind="customEdgeProps" />
     </template>
   </VueFlow>
 </template>
@@ -28,7 +22,15 @@
 <script setup lang="ts">
 import { VueFlow } from '@vue-flow/core'
 import { Background } from '@vue-flow/background'
+
+import { InterfaceCardBond, InterfaceCardBridge, InterfaceCardEthernet } from '#components'
 import { Interface } from '~/shared/types/interface'
+
+const nodeTypes = {
+  ethernet: InterfaceCardEthernet,
+  bridge: InterfaceCardBridge,
+  bond: InterfaceCardBond,
+}
 
 // const interfaces = {
 //   nics: [{
@@ -69,37 +71,37 @@ const nodes = ref([
   },
   {
     id: '2',
-    position: { x: 250, y: 50 },
+    position: { x: 200, y: 50 },
     type: 'ethernet',
     data: { label: 'eth1' },
   },
   {
     id: '3',
-    position: { x: 450, y: 50 },
+    position: { x: 350, y: 50 },
     type: 'ethernet',
     data: { label: 'eth2' },
   },
   {
     id: '4',
-    position: { x: 650, y: 50 },
+    position: { x: 500, y: 50 },
     type: 'ethernet',
     data: { label: 'eth3' },
   },
   {
     id: '5',
-    position: { x: 850, y: 50 },
+    position: { x: 650, y: 50 },
     type: 'ethernet',
     data: { label: 'eth4' },
   },
   {
     id: '6',
-    position: { x: 250, y: 150 },
+    position: { x: 200, y: 150 },
     type: 'bond',
     data: { label: 'bond0' },
   },
   {
     id: '7',
-    position: { x: 450, y: 150 },
+    position: { x: 350, y: 150 },
     type: 'bond',
     data: { label: 'bond1' },
   },
@@ -111,31 +113,31 @@ const nodes = ref([
   },
   {
     id: '9',
-    position: { x: 250, y: 250 },
+    position: { x: 200, y: 250 },
     type: 'bridge',
     data: { label: 'br1' },
   },
   {
     id: '10',
-    position: { x: 450, y: 250 },
+    position: { x: 350, y: 250 },
     type: 'bridge',
     data: { label: 'br2' },
   },
   {
     id: '11',
-    position: { x: 650, y: 250 },
+    position: { x: 500, y: 250 },
     type: 'bridge',
     data: { label: 'br3' },
   },
   {
     id: '12',
-    position: { x: 850, y: 250 },
+    position: { x: 650, y: 250 },
     type: 'bridge',
     data: { label: 'br4' },
   },
   {
     id: '13',
-    position: { x: 1050, y: 250 },
+    position: { x: 800, y: 250 },
     type: 'bridge',
     data: { label: 'br5' },
   },
@@ -144,60 +146,75 @@ const nodes = ref([
 const edges = ref([
   {
     id: 'e1->6',
+    type: 'interface',
     source: '1',
     target: '6',
   },
   {
     id: 'e2->6',
+    type: 'interface',
     source: '2',
     target: '6',
   },
   {
     id: 'e3->6',
+    type: 'interface',
     source: '3',
     target: '6',
   },
   {
     id: 'e4->12',
+    type: 'interface',
     source: '4',
     target: '12',
   },
   {
     id: 'e5->7',
+    type: 'interface',
     source: '5',
     target: '7',
   },
   {
     id: 'e4->12',
+    type: 'interface',
     source: '4',
     target: '12',
   },
   {
     id: 'e6->8',
+    type: 'interface',
     source: '6',
     target: '8',
   },
   {
     id: 'e7->9',
+    type: 'interface',
     source: '7',
     target: '9',
   },
   {
     id: 'e7->13',
+    type: 'interface',
     source: '7',
     target: '13',
   },
   {
     id: 'e6->10',
+    type: 'interface',
     source: '6',
     target: '10',
   },
   {
     id: 'e6->12',
+    type: 'interface',
     source: '6',
     target: '12',
   },
 ])
+
+function onNodeClick({ event, node }: any) {
+  console.log('Node clicked:', node, event)
+}
 </script>
 
 <style>

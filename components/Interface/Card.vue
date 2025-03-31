@@ -1,5 +1,5 @@
 <template>
-  <div :class="['vue-flow__node-default', 'card', data.active ? 'active' : '']">
+  <div :class="['vue-flow__node-default', 'card', data.active ? 'card-active' : '']">
     <img
       :src="src[type]"
       alt="Bond"
@@ -55,7 +55,7 @@ const src = {
   border: 2px solid #FF9101;
 }
 
-.active {
+.card-active {
   border: 1px solid #FF9101;
 }
 

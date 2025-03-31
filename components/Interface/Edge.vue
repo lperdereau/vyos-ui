@@ -6,16 +6,23 @@
     :target-y="targetY"
     :source-position="sourcePosition"
     :target-position="targetPosition"
+    :style="style"
   />
 </template>
 
 <script setup lang="ts">
-import type { EdgeProps } from '@vue-flow/core'
 import { BezierEdge } from '@vue-flow/core'
+import type { CustomEdgeProps } from './flux.types'
 
-type EdgeData = {
-  active: boolean
-}
+const props = defineProps<CustomEdgeProps>()
 
-defineProps<EdgeProps<EdgeData>>()
+const style = computed(() => {
+  if (props.data.active) {
+    return {
+      stroke: '#FF9101',
+    }
+  }
+
+  return {}
+})
 </script>

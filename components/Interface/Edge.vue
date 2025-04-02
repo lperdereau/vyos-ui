@@ -20,6 +20,7 @@ const style = computed(() => {
   if (props.data.active) {
     return {
       stroke: '#FF9101',
+      strokeWidth: 1.5,
     }
   }
 

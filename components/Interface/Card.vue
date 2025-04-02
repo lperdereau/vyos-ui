@@ -24,13 +24,14 @@
 <script setup lang="ts">
 import { Position, Handle } from '@vue-flow/core'
 import type { CustomNodeProps } from './flux.types'
+import { InterfaceType } from '~/shared/types/interface'
 
 defineProps<CustomNodeProps>()
 
 const src = {
-  bond: '/img/bond.svg',
-  bridge: '/img/bridge.svg',
-  ethernet: '/img/nic.svg',
+  [InterfaceType.BOND]: '/img/bond.svg',
+  [InterfaceType.BRIDGE]: '/img/bridge.svg',
+  [InterfaceType.ETHER]: '/img/nic.svg',
 }
 </script>
 
@@ -56,10 +57,6 @@ const src = {
 }
 
 .card-active {
-  border: 1px solid #FF9101;
-}
-
-.card-linked {
-  border: 1px solid #FF9101;
+  border: 1.5px solid #FF9101;
 }
 </style>

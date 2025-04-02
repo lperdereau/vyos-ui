@@ -19,16 +19,16 @@
 
 <script setup lang="ts">
 import { VueFlow } from '@vue-flow/core'
-import type { GraphNode } from '@vue-flow/core'
+import type { GraphNode, Node, Edge } from '@vue-flow/core'
 import { Background } from '@vue-flow/background'
 
 import { InterfaceCard, InterfaceEdge } from '#components'
-import { Interface } from '~/shared/types/interface'
+import { InterfaceType } from '~/shared/types/interface'
 
 const nodeTypes = {
-  bond: InterfaceCard,
-  bridge: InterfaceCard,
-  ethernet: InterfaceCard,
+  [InterfaceType.BOND]: InterfaceCard,
+  [InterfaceType.BRIDGE]: InterfaceCard,
+  [InterfaceType.ETHER]: InterfaceCard,
 }
 
 const edgeTypes = {
@@ -65,88 +65,90 @@ const edgeTypes = {
 //   }],
 // }
 
-const nodes = ref([
+/* return computed to have {x, y} to center nodes and edge by giving first node position at top left and last node position at right bottom  */
+
+const nodes = ref<Node[]>([
   {
     id: '1',
     position: { x: 50, y: 50 },
-    type: 'ethernet',
+    type: InterfaceType.ETHER,
     data: { label: 'eth0', active: false },
   },
   {
     id: '2',
     position: { x: 200, y: 50 },
-    type: 'ethernet',
+    type: InterfaceType.ETHER,
     data: { label: 'eth1', active: false },
   },
   {
     id: '3',
     position: { x: 350, y: 50 },
-    type: 'ethernet',
+    type: InterfaceType.ETHER,
     data: { label: 'eth2', active: false },
   },
   {
     id: '4',
     position: { x: 500, y: 50 },
-    type: 'ethernet',
+    type: InterfaceType.ETHER,
     data: { label: 'eth3', active: false },
   },
   {
     id: '5',
     position: { x: 650, y: 50 },
-    type: 'ethernet',
+    type: InterfaceType.ETHER,
     data: { label: 'eth4', active: false },
   },
   {
     id: '6',
     position: { x: 200, y: 150 },
-    type: 'bond',
+    type: InterfaceType.BOND,
     data: { label: 'bond0', active: false },
   },
   {
     id: '7',
     position: { x: 350, y: 150 },
-    type: 'bond',
+    type: InterfaceType.BOND,
     data: { label: 'bond1', active: false },
   },
   {
     id: '8',
     position: { x: 50, y: 250 },
-    type: 'bridge',
+    type: InterfaceType.BRIDGE,
     data: { label: 'br0', active: false },
   },
   {
     id: '9',
     position: { x: 200, y: 250 },
-    type: 'bridge',
+    type: InterfaceType.BRIDGE,
     data: { label: 'br1', active: false },
   },
   {
     id: '10',
     position: { x: 350, y: 250 },
-    type: 'bridge',
+    type: InterfaceType.BRIDGE,
     data: { label: 'br2', active: false },
   },
   {
     id: '11',
     position: { x: 500, y: 250 },
-    type: 'bridge',
+    type: InterfaceType.BRIDGE,
     data: { label: 'br3', active: false },
   },
   {
     id: '12',
     position: { x: 650, y: 250 },
-    type: 'bridge',
+    type: InterfaceType.BRIDGE,
     data: { label: 'br4', active: false },
   },
   {
     id: '13',
     position: { x: 800, y: 250 },
-    type: 'bridge',
+    type: InterfaceType.BRIDGE,
     data: { label: 'br5', active: false },
   },
 ])
 
-const edges = ref([
+const edges = ref<Edge[]>([
   {
     id: 'e1->6',
     type: 'interface',
@@ -226,11 +228,20 @@ const edges = ref([
   },
 ])
 
+const nodeSelected = ref<Node | null>(null)
+
 function onNodeClick({ node }: { node: GraphNode }) {
   setAllEdgesInactive()
   setAllNodesInactive()
 
-  node.data.active = true
+  const clickedNode = getNode(node.id)
+
+  if (clickedNode?.id == nodeSelected.value?.id) {
+    nodeSelected.value = null
+    return
+  }
+
+  nodeSelected.value = clickedNode
 
   const linkedEdges = getEdgesLinkToId(node)
   linkedEdges.forEach((edge) => {
@@ -253,7 +264,11 @@ function setAllNodesInactive() {
   })
 }
 
-function getLinkedNode(edge: any) {
+function getNode(id: string): Node | null {
+  return nodes.value.find(node => node.id === id) || null
+}
+
+function getLinkedNode(edge: Edge) {
   return nodes.value.filter(node => node.id === edge.target || node.id === edge.source)
 }
 
